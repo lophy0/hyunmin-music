@@ -132,7 +132,6 @@
             margin-bottom: 30px;
         }
 
-        /* Декоративная плашка статистики/вайба */
         .hero-stats {
             display: flex;
             justify-content: center;
@@ -324,7 +323,6 @@
             box-shadow: 0 0 10px rgba(138, 206, 0, 0.1);
         }
 
-        /* Медиа внутри сообщений */
         .message-media {
             max-width: 100%;
             margin-top: 8px;
@@ -337,7 +335,6 @@
             height: 40px;
         }
 
-        /* Кнопки управления сообщением */
         .message-actions {
             display: flex;
             gap: 8px;
@@ -358,7 +355,6 @@
             color: var(--accent-color);
         }
 
-        /* Форма ввода чата */
         .chat-input-area {
             padding: 15px;
             background-color: var(--card-bg);
@@ -448,15 +444,15 @@
             <div class="hero-stats">
                 <div class="stat-item">
                     <strong>R&B / Soul</strong>
-                    Основной стиль
+                    Основной жанр
                 </div>
                 <div class="stat-item">
-                    <strong>Открыт</strong>
-                    К совместным трекам
+                    <strong>Открыто</strong>
+                    Для совместных проектов
                 </div>
                 <div class="stat-item">
                     <strong>Live Space</strong>
-                    Демо и общение
+                    Общение онлайн
                 </div>
             </div>
         </section>
@@ -478,7 +474,6 @@
         <section id="chat">
             <h2 class="section-title">Коллаборации & Чат</h2>
             
-            <!-- Карточка-ссылка на Google Форму -->
             <div class="form-banner">
                 <div class="form-banner-text">
                     <h3>Хочешь совместный трек или фит?</h3>
@@ -522,14 +517,17 @@
         const userInput = document.getElementById('userInput');
         const fileInput = document.getElementById('fileInput');
 
-        // Загружаем сохраненные сообщения из localStorage
-        let messages = JSON.parse(localStorage.getItem('chat_messages')) || [];
- function renderMessages() {
-            // Очищаем старые пользовательские сообщения пред отрисовкой
+        let messages = [];
+        try {
+            messages = JSON.parse(localStorage.getItem('chat_messages')) || [];
+        } catch (e) {
+            messages = [];
+        }
+
+        function renderMessages() {
             const userMsgs = chatMessages.querySelectorAll('.message.user');
             userMsgs.forEach(msg => msg.remove());
-
-            messages.forEach((msg, index) => {
+ messages.forEach((msg, index) => {
                 const msgDiv = document.createElement('div');
                 msgDiv.className = 'message user';
                 
@@ -538,7 +536,7 @@
                     contentHTML += <div class="msg-text">${escapeHtml(msg.text)}</div>;
                 }
 
-                if (msg.file) {
+                if (msg.file && msg.file.data) {
                     if (msg.file.type.startsWith('audio/')) {
                         contentHTML += <audio controls class="message-media" src="${msg.file.data}"></audio>;
                     } else if (msg.file.type.startsWith('video/')) {
@@ -548,8 +546,8 @@
 
                 contentHTML += 
                     <div class="message-actions">
-                        ${msg.text ? <button class="action-btn" onclick="editMessage(${index})">Ред.</button> : ''}
-                        <button class="action-btn" onclick="deleteMessage(${index})">Удалить</button>
+                        ${msg.text ? <button type="button" class="action-btn" onclick="editMessage(${index})">Ред.</button> : ''}
+                        <button type="button" class="action-btn" onclick="deleteMessage(${index})">Удалить</button>
                     </div>
                 ;
 
@@ -564,28 +562,43 @@
             return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         }
 
-        chatForm.addEventListener('submit', async (e) => {
+        chatForm.addEventListener('submit', function(e) {
             e.preventDefault();
+
             const text = userInput.value.trim();
             const file = fileInput.files[0];
 
-            if (!text && !file) return;
+            if (!text && !file) return false;
 
-            let fileData = null;
             if (file) {
-                fileData = {
-                    name: file.name,
-                    type: file.type,
-                    data: await fileToBase64(file)
-                };
+                fileToBase64(file).then(base64Data => {
+                    messages.push({
+                        text: text,
+                        file: {
+                            name: file.name,
+                            type: file.type,
+                            data: base64Data
+                        }
+                    });
+                    saveAndRender();
+                    resetForm();
+                }).catch(err => {
+                    console.error("Ошибка чтения файла:", err);
+                    alert("Не удалось прикрепить файл. Попробуйте файл меньшего размера.");
+                });
+            } else {
+                messages.push({ text: text, file: null });
+                saveAndRender();
+                resetForm();
             }
 
-            messages.push({ text, file: fileData });
-            saveAndRender();
+            return false;
+        });
 
+        function resetForm() {
             userInput.value = '';
             fileInput.value = '';
-        });
+        }
 
         function fileToBase64(file) {
             return new Promise((resolve, reject) => {
@@ -610,11 +623,14 @@
         };
 
         function saveAndRender() {
-            localStorage.setItem('chat_messages', JSON.stringify(messages));
+            try {
+                localStorage.setItem('chat_messages', JSON.stringify(messages));
+            } catch (e) {
+                alert("Превышен лимит памяти браузера (localStorage)! Попробуйте удалить старые медиасообщения.");
+            }
             renderMessages();
         }
 
-        // Первичный рендер при загрузке страницы
         renderMessages();
     </script>
 </body>
