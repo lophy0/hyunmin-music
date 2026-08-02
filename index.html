@@ -1,4 +1,4 @@
- <!DOCTYPE html> 
+[03.08.2026 01:10] 𝔏𝔬𝔭𝔥𝔶: <!DOCTYPE html> 
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -144,7 +144,7 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
- .card {
+[03.08.2026 01:10] 𝔏𝔬𝔭𝔥𝔶: .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             padding: 25px;
@@ -297,7 +297,7 @@
             margin-top: 6px;
             justify-content: flex-end;
         }
- .action-btn {
+[03.08.2026 01:10] 𝔏𝔬𝔭𝔥𝔶: .action-btn {
             background: none;
             border: none;
             color: var(--text-muted);
@@ -363,75 +363,6 @@
             background-color: var(--accent-hover);
         }
 
-        /* Модальное окно Captcha */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: var(--card-bg);
-            border: 1px solid var(--accent-color);
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            position: relative;
-            min-width: 310px;
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            color: var(--text-muted);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Кастомный блок локальной капчи */
-        .captcha-box {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .captcha-question {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--accent-color);
-        }
-
-        .captcha-input {
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            color: #fff;
-            padding: 10px;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 1.1rem;
-            outline: none;
-        }
-
-        .captcha-input:focus {
-            border-color: var(--accent-color);
-        }
-
-        .captcha-error {
-            color: #ff4d4d;
-            font-size: 0.85rem;
-            display: none;
-        }
-
         /* Баннер Cookie */
         .cookie-banner {
             position: fixed;
@@ -447,7 +378,8 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.5);
             display: none;
         }
- .cookie-banner p {
+
+        .cookie-banner p {
             font-size: 0.9rem;
             color: var(--text-muted);
             margin-bottom: 12px;
@@ -499,8 +431,7 @@
             <h1>Звук, вайб и <span>наборы на коллабы</span></h1>
             <p>Основное направление — R&B, но рамки ни к чему. Открыто для любых экспериментов, совместных работ и креативных идей.</p>
         </section>
-
-        <section id="about">
+[03.08.2026 01:10] 𝔏𝔬𝔭𝔥𝔶: <section id="about">
             <h2 class="section-title">Жанры</h2>
             <div class="about-grid">
                 <div class="card">
@@ -521,7 +452,7 @@
                 <div class="form-banner-text">
                     <h3>Хочешь совместный трек или фит?</h3>
                     <p>Заполни анкету, чтобы обсудить детали.</p>
-                    <button class="btn-link form-captcha-trigger">Заполнить анкету</button>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScDw30bm5YaDJGs3bxPCGKo5oFvYg2CwmUVDmjWV_L5lUg6bQ/viewform?usp=header" target="_blank" class="btn-link">Заполнить анкету</a>
                 </div>
             </div>
 
@@ -536,7 +467,7 @@
                 <div class="chat-messages" id="chatMessages">
                     <div class="message artist">
                         <div class="author">Админ</div>
-                        Привет! Закидывай сюда свои идеи, свое творчество или просто пиши. А если хочешь подать заявку на фит — заполняй <a class="form-captcha-trigger">Google Форму</a>!
+                        Привет! Закидывай сюда свои идеи, свое творчество или просто пиши. А если хочешь подать заявку на фит — заполняй <a href="https://docs.google.com/forms/d/e/1FAIpQLScDw30bm5YaDJGs3bxPCGKo5oFvYg2CwmUVDmjWV_L5lUg6bQ/viewform?usp=header" target="_blank">Google Форму</a>!
                     </div>
                 </div>
                 <form class="chat-input-area" id="chatForm">
@@ -548,21 +479,6 @@
             </div>
         </section>
     </main>
- <!-- Модальное окно Captcha -->
-    <div class="modal" id="captchaModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeCaptcha">&times;</span>
-            <h3 style="margin-bottom: 10px;">Проверка на бота</h3>
-            <p style="font-size: 0.9rem; color: var(--text-muted);">Решите пример для продолжения:</p>
-            
-            <div class="captcha-box">
-                <div class="captcha-question" id="captchaQuestion">5 + 3 = ?</div>
-                <input type="number" id="captchaAnswer" class="captcha-input" placeholder="Ответ" autocomplete="off">
-                <div class="captcha-error" id="captchaError">Неверный ответ! Попробуйте еще раз.</div>
-                <button class="btn-link" id="verifyCaptchaBtn" style="margin-top:0;">Подтвердить</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Баннер принятия Cookies -->
     <div class="cookie-banner" id="cookieBanner">
@@ -572,12 +488,10 @@
 
     <footer>
         <p>&copy; 2026 Hyunmin. Green & Black Vibe.</p>
-        <button class="reset-btn" id="resetStorageBtn">⚙️ Сбросить тесты (Cookie и Капчу)</button>
+        <button class="reset-btn" id="resetCookieBtn">⚙️ Сбросить Cookie (для теста баннера)</button>
     </footer>
 
     <script>
-        const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScDw30bm5YaDJGs3bxPCGKo5oFvYg2CwmUVDmjWV_L5lUg6bQ/viewform?usp=header";
-        
         // --- Cookies ---
         const cookieBanner = document.getElementById('cookieBanner');
         const acceptCookiesBtn = document.getElementById('acceptCookies');
@@ -591,60 +505,6 @@
             cookieBanner.style.display = 'none';
         });
 
-        // --- Кастомная Локальная Капча ---
-        const captchaModal = document.getElementById('captchaModal');
-        const closeCaptcha = document.getElementById('closeCaptcha');
-        const formTriggers = document.querySelectorAll('.form-captcha-trigger');
-        const verifyCaptchaBtn = document.getElementById('verifyCaptchaBtn');
-        const captchaQuestion = document.getElementById('captchaQuestion');
-        const captchaAnswer = document.getElementById('captchaAnswer');
-        const captchaError = document.getElementById('captchaError');
-
-        let captchaTarget = null; // 'form' или 'chat'
-        let num1 = 0, num2 = 0, correctAnswer = 0;
-
-        function generateCaptcha() {
-            num1 = Math.floor(Math.random() * 10) + 1;
-            num2 = Math.floor(Math.random() * 10) + 1;
-            correctAnswer = num1 + num2;
-            captchaQuestion.textContent = ${num1} + ${num2} = ?;
-            captchaAnswer.value = '';
-            captchaError.style.display = 'none';
-        }
-
-        function openCaptchaModal(target) {
-            captchaTarget = target;
-            generateCaptcha();
-            captchaModal.style.display = 'flex';
-        }
-
-        formTriggers.forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                openCaptchaModal('form');
-            });
-        });
-
-        closeCaptcha.addEventListener('click', () => {
-            captchaModal.style.display = 'none';
-        });
-
-        verifyCaptchaBtn.addEventListener('click', () => {
-            const userAnswer = parseInt(captchaAnswer.value.trim(), 10);
-            if (userAnswer === correctAnswer) {
-                captchaModal.style.display = 'none';
- if (captchaTarget === 'form') {
-                    window.open(FORM_URL, '_blank');
-                } else if (captchaTarget === 'chat') {
-                    localStorage.setItem('chat_captcha_verified', 'true');
-                    sendMessage();
-                }
-            } else {
-                captchaError.style.display = 'block';
-                generateCaptcha();
-            }
-        });
-
         // --- Логика Чата ---
         const chatForm = document.getElementById('chatForm');
         const chatMessages = document.getElementById('chatMessages');
@@ -652,8 +512,7 @@
         const fileInput = document.getElementById('fileInput');
 
         let messages = JSON.parse(localStorage.getItem('chat_messages')) || [];
-
-        function renderMessages() {
+[03.08.2026 01:10] 𝔏𝔬𝔭𝔥𝔶: function renderMessages() {
             const existingUserMsgs = chatMessages.querySelectorAll('.message.user');
             existingUserMsgs.forEach(msg => msg.remove());
 
@@ -693,17 +552,6 @@
 
         chatForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const text = userInput.value.trim();
-            const file = fileInput.files[0];
-
-            if (!text && !file) return;
-
-            const isCaptchaVerified = localStorage.getItem('chat_captcha_verified');
-            if (!isCaptchaVerified) {
-                openCaptchaModal('chat');
-                return;
-            }
-
             sendMessage();
         });
 
@@ -742,7 +590,8 @@
             messages.splice(index, 1);
             saveAndRender();
         };
- window.editMessage = function(index) {
+
+        window.editMessage = function(index) {
             const newText = prompt("Редактировать сообщение:", messages[index].text);
             if (newText !== null && newText.trim() !== '') {
                 messages[index].text = newText.trim();
@@ -755,11 +604,10 @@
             renderMessages();
         }
 
-        // --- Кнопка Сброса Памяти Тестов ---
-        document.getElementById('resetStorageBtn').addEventListener('click', () => {
+        // --- Кнопка Сброса Cookies ---
+        document.getElementById('resetCookieBtn').addEventListener('click', () => {
             localStorage.removeItem('cookiesAccepted');
-            localStorage.removeItem('chat_captcha_verified');
-            alert('Состояние Cookies и Капчи сброшено. Страница будет перезагружена.');
+            alert('Согласие Cookie сброшено. Перезагрузка страницы...');
             location.reload();
         });
 
