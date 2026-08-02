@@ -38,6 +38,22 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Декоративный светящийся фон */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(138, 206, 0, 0.08) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
         }
 
         header {
@@ -48,8 +64,8 @@
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
-            background-color: rgba(7, 8, 7, 0.9);
-            backdrop-filter: blur(10px);
+            background-color: rgba(7, 8, 7, 0.85);
+            backdrop-filter: blur(12px);
             z-index: 100;
         }
 
@@ -78,7 +94,7 @@
         }
 
         .hero {
-            padding: 90px 5% 50px;
+            padding: 90px 5% 40px;
             text-align: center;
             max-width: 900px;
             margin: 0 auto;
@@ -89,12 +105,13 @@
             background: rgba(138, 206, 0, 0.1);
             color: var(--accent-color);
             border: 1px solid var(--accent-color);
-            padding: 4px 12px;
+            padding: 4px 14px;
             border-radius: 20px;
             font-size: 0.8rem;
             letter-spacing: 2px;
             margin-bottom: 20px;
             text-transform: uppercase;
+            box-shadow: 0 0 12px var(--accent-glow);
         }
 
         .hero h1 {
@@ -113,6 +130,29 @@
             color: var(--text-muted);
             font-size: 1.15rem;
             margin-bottom: 30px;
+        }
+
+        /* Декоративная плашка статистики/вайба */
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+ .stat-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .stat-item strong {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            display: block;
         }
 
         section {
@@ -144,7 +184,8 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
- .card {
+
+        .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             padding: 25px;
@@ -155,6 +196,7 @@
         .card:hover {
             border-color: var(--accent-color);
             transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
         }
 
         .card h3 {
@@ -194,10 +236,7 @@
             text-decoration: none;
             padding: 12px 24px;
             border-radius: 8px;
-            margin-top: 12px;
             transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-            border: none;
         }
 
         .btn-link:hover {
@@ -205,7 +244,7 @@
             transform: translateY(-2px);
         }
 
-        /* Чат */
+        /* Блок Чата */
         .chat-container {
             background-color: var(--chat-bg);
             border: 1px solid var(--border-color);
@@ -214,6 +253,7 @@
             display: flex;
             flex-direction: column;
             height: 550px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
         }
 
         .chat-header {
@@ -249,8 +289,7 @@
             flex-direction: column;
             gap: 15px;
         }
-
-        .message {
+ .message {
             max-width: 80%;
             padding: 12px 16px;
             border-radius: 12px;
@@ -275,7 +314,6 @@
         .message.artist a {
             color: var(--accent-color);
             text-decoration: underline;
-            cursor: pointer;
         }
 
         .message.user {
@@ -283,21 +321,31 @@
             border: 1px solid var(--accent-color);
             color: #fff;
             align-self: flex-end;
+            box-shadow: 0 0 10px rgba(138, 206, 0, 0.1);
         }
 
+        /* Медиа внутри сообщений */
         .message-media {
             max-width: 100%;
             margin-top: 8px;
             border-radius: 8px;
+            display: block;
         }
 
+        audio.message-media {
+            width: 100%;
+            height: 40px;
+        }
+
+        /* Кнопки управления сообщением */
         .message-actions {
             display: flex;
             gap: 8px;
             margin-top: 6px;
             justify-content: flex-end;
         }
- .action-btn {
+
+        .action-btn {
             background: none;
             border: none;
             color: var(--text-muted);
@@ -310,6 +358,7 @@
             color: var(--accent-color);
         }
 
+        /* Форма ввода чата */
         .chat-input-area {
             padding: 15px;
             background-color: var(--card-bg);
@@ -341,6 +390,10 @@
             border-radius: 8px;
             cursor: pointer;
             transition: 0.2s;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .file-label:hover {
@@ -363,50 +416,12 @@
             background-color: var(--accent-hover);
         }
 
-        /* Баннер Cookie */
-        .cookie-banner {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            max-width: 500px;
-            background: var(--card-bg);
-            border: 1px solid var(--accent-color);
-            padding: 20px;
-            border-radius: 12px;
-            z-index: 999;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-            display: none;
-        }
-
-        .cookie-banner p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-        }
-
         footer {
             text-align: center;
             padding: 30px;
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
             font-size: 0.85rem;
-        }
-
-        .reset-btn {
-            background: none;
-            border: 1px dashed var(--border-color);
-            color: var(--text-muted);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-
-        .reset-btn:hover {
-            color: var(--accent-color);
-            border-color: var(--accent-color);
         }
     </style>
 </head>
@@ -424,14 +439,29 @@
             <a href="#chat">Коллабы & Чат</a>
         </nav>
     </header>
-
-    <main>
+ <main>
         <section class="hero">
             <div class="hero-badge">R&B / Multi-Genre Artist</div>
             <h1>Звук, вайб и <span>наборы на коллабы</span></h1>
             <p>Основное направление — R&B, но рамки ни к чему. Открыто для любых экспериментов, совместных работ и креативных идей.</p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <strong>R&B / Soul</strong>
+                    Основной стиль
+                </div>
+                <div class="stat-item">
+                    <strong>Открыт</strong>
+                    К совместным трекам
+                </div>
+                <div class="stat-item">
+                    <strong>Live Space</strong>
+                    Демо и общение
+                </div>
+            </div>
         </section>
- <section id="about">
+
+        <section id="about">
             <h2 class="section-title">Жанры</h2>
             <div class="about-grid">
                 <div class="card">
@@ -448,12 +478,13 @@
         <section id="chat">
             <h2 class="section-title">Коллаборации & Чат</h2>
             
+            <!-- Карточка-ссылка на Google Форму -->
             <div class="form-banner">
                 <div class="form-banner-text">
                     <h3>Хочешь совместный трек или фит?</h3>
                     <p>Заполни анкету, чтобы обсудить детали.</p>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScDw30bm5YaDJGs3bxPCGKo5oFvYg2CwmUVDmjWV_L5lUg6bQ/viewform?usp=header" target="_blank" class="btn-link">Заполнить анкету</a>
                 </div>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScDw30bm5YaDJGs3bxPCGKo5oFvYg2CwmUVDmjWV_L5lUg6bQ/viewform?usp=header" target="_blank" class="btn-link">Заполнить анкету</a>
             </div>
 
             <div class="chat-container">
@@ -467,61 +498,43 @@
                 <div class="chat-messages" id="chatMessages">
                     <div class="message artist">
                         <div class="author">Админ</div>
-                        Привет! Закидывай сюда свои идеи, свое творчество или просто пиши. А если хочешь подать заявку на фит — заполняй <a href="https://docs.google.com/forms/d/e/1FAIpQLScDw30bm5YaDJGs3bxPCGKo5oFvYg2CwmUVDmjWV_L5lUg6bQ/viewform?usp=header" target="_blank">Google Форму</a>!
+                        Привет! Закидывай сюда свои идеи, свои демо (аудио/видео) или просто пиши. А если хочешь подать заявку на фит — заполняй <a href="https://docs.google.com/forms/d/e/1FAIpQLScDw30bm5YaDJGs3bxPCGKo5oFvYg2CwmUVDmjWV_L5lUg6bQ/viewform?usp=header" target="_blank">Google Форму</a>!
                     </div>
                 </div>
                 <form class="chat-input-area" id="chatForm">
                     <label class="file-label" for="fileInput" title="Прикрепить аудио/видео">📷/🎵</label>
                     <input type="file" id="fileInput" accept="audio/*,video/*" style="display:none;">
-                    <input type="text" id="userInput" placeholder="Написать..." autocomplete="off">
+                    
+                    <input type="text" id="userInput" placeholder="Написать сообщение..." autocomplete="off">
                     <button type="submit" class="send-btn">Отправить</button>
                 </form>
             </div>
         </section>
     </main>
 
-    <!-- Баннер принятия Cookies -->
-    <div class="cookie-banner" id="cookieBanner">
-        <p>Мы используем файлы cookie для улучшения работы сайта и сохранения ваших сообщений в чате. Продолжая использовать сайт, вы соглашаетесь с использованием файлов cookie.</p>
-        <button class="btn-link" id="acceptCookies" style="margin-top:0; padding: 8px 16px; font-size: 0.85rem;">Принять</button>
-    </div>
-
     <footer>
         <p>&copy; 2026 Hyunmin. Green & Black Vibe.</p>
-        <button class="reset-btn" id="resetCookieBtn">⚙️ Сбросить Cookie (для теста баннера)</button>
     </footer>
 
     <script>
-        // --- Cookies ---
-        const cookieBanner = document.getElementById('cookieBanner');
-        const acceptCookiesBtn = document.getElementById('acceptCookies');
-
-        if (!localStorage.getItem('cookiesAccepted')) {
-            cookieBanner.style.display = 'block';
-        }
-
-        acceptCookiesBtn.addEventListener('click', () => {
-            localStorage.setItem('cookiesAccepted', 'true');
-            cookieBanner.style.display = 'none';
-        });
-
-        // --- Логика Чата ---
         const chatForm = document.getElementById('chatForm');
         const chatMessages = document.getElementById('chatMessages');
         const userInput = document.getElementById('userInput');
         const fileInput = document.getElementById('fileInput');
 
+        // Загружаем сохраненные сообщения из localStorage
         let messages = JSON.parse(localStorage.getItem('chat_messages')) || [];
  function renderMessages() {
-            const existingUserMsgs = chatMessages.querySelectorAll('.message.user');
-            existingUserMsgs.forEach(msg => msg.remove());
+            // Очищаем старые пользовательские сообщения пред отрисовкой
+            const userMsgs = chatMessages.querySelectorAll('.message.user');
+            userMsgs.forEach(msg => msg.remove());
 
             messages.forEach((msg, index) => {
                 const msgDiv = document.createElement('div');
                 msgDiv.className = 'message user';
                 
                 let contentHTML = '';
-                if(msg.text) {
+                if (msg.text) {
                     contentHTML += <div class="msg-text">${escapeHtml(msg.text)}</div>;
                 }
 
@@ -543,6 +556,7 @@
                 msgDiv.innerHTML = contentHTML;
                 chatMessages.appendChild(msgDiv);
             });
+
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
@@ -550,12 +564,8 @@
             return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         }
 
-        chatForm.addEventListener('submit', (e) => {
+        chatForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            sendMessage();
-        });
-
-        async function sendMessage() {
             const text = userInput.value.trim();
             const file = fileInput.files[0];
 
@@ -575,7 +585,7 @@
 
             userInput.value = '';
             fileInput.value = '';
-        }
+        });
 
         function fileToBase64(file) {
             return new Promise((resolve, reject) => {
@@ -604,13 +614,7 @@
             renderMessages();
         }
 
-        // --- Кнопка Сброса Cookies ---
-        document.getElementById('resetCookieBtn').addEventListener('click', () => {
-            localStorage.removeItem('cookiesAccepted');
-            alert('Согласие Cookie сброшено. Перезагрузка страницы...');
-            location.reload();
-        });
-
+        // Первичный рендер при загрузке страницы
         renderMessages();
     </script>
 </body>
