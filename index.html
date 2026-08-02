@@ -1,4 +1,4 @@
-[03.08.2026 01:10] 𝔏𝔬𝔭𝔥𝔶: <!DOCTYPE html> 
+ <!DOCTYPE html> 
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -144,7 +144,7 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
-[03.08.2026 01:10] 𝔏𝔬𝔭𝔥𝔶: .card {
+ .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             padding: 25px;
@@ -297,7 +297,7 @@
             margin-top: 6px;
             justify-content: flex-end;
         }
-[03.08.2026 01:10] 𝔏𝔬𝔭𝔥𝔶: .action-btn {
+ .action-btn {
             background: none;
             border: none;
             color: var(--text-muted);
@@ -431,7 +431,7 @@
             <h1>Звук, вайб и <span>наборы на коллабы</span></h1>
             <p>Основное направление — R&B, но рамки ни к чему. Открыто для любых экспериментов, совместных работ и креативных идей.</p>
         </section>
-[03.08.2026 01:10] 𝔏𝔬𝔭𝔥𝔶: <section id="about">
+ <section id="about">
             <h2 class="section-title">Жанры</h2>
             <div class="about-grid">
                 <div class="card">
@@ -512,7 +512,7 @@
         const fileInput = document.getElementById('fileInput');
 
         let messages = JSON.parse(localStorage.getItem('chat_messages')) || [];
-[03.08.2026 01:10] 𝔏𝔬𝔭𝔥𝔶: function renderMessages() {
+ function renderMessages() {
             const existingUserMsgs = chatMessages.querySelectorAll('.message.user');
             existingUserMsgs.forEach(msg => msg.remove());
 
