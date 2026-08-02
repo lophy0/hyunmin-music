@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+ <!DOCTYPE html> 
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -13,9 +13,6 @@
     <meta name="yandex-verification" content="16969eea7aa29c3c" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hyunmin // Space & Live Chat</title>
-    
-    <!-- Подключение reCAPTCHA API -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     
     <style>
         :root {
@@ -141,13 +138,13 @@
             box-shadow: 0 0 10px var(--accent-glow);
             border-radius: 2px;
         }
- .about-grid {
+
+        .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
-
-        .card {
+ .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             padding: 25px;
@@ -293,14 +290,14 @@
             margin-top: 8px;
             border-radius: 8px;
         }
- .message-actions {
+
+        .message-actions {
             display: flex;
             gap: 8px;
             margin-top: 6px;
             justify-content: flex-end;
         }
-
-        .action-btn {
+ .action-btn {
             background: none;
             border: none;
             color: var(--text-muted);
@@ -387,7 +384,8 @@
             border-radius: 12px;
             text-align: center;
             position: relative;
-            min-width: 300px;
+            min-width: 310px;
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
         .close-modal {
@@ -399,22 +397,39 @@
             cursor: pointer;
         }
 
-        /* Резервная кнопка капчи (если API Google не подрубился) */
-        .fallback-captcha-btn {
-            background: var(--bg-color);
-            border: 1px solid var(--accent-color);
-            color: #fff;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
+        /* Кастомный блок локальной капчи */
+        .captcha-box {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
             margin-top: 15px;
-            transition: 0.2s;
         }
 
-        .fallback-captcha-btn:hover {
-            background: var(--accent-color);
-            color: #000;
+        .captcha-question {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .captcha-input {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        .captcha-input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .captcha-error {
+            color: #ff4d4d;
+            font-size: 0.85rem;
+            display: none;
         }
 
         /* Баннер Cookie */
@@ -432,18 +447,34 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.5);
             display: none;
         }
-
-        .cookie-banner p {
+ .cookie-banner p {
             font-size: 0.9rem;
             color: var(--text-muted);
             margin-bottom: 12px;
         }
- footer {
+
+        footer {
             text-align: center;
             padding: 30px;
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
             font-size: 0.85rem;
+        }
+
+        .reset-btn {
+            background: none;
+            border: 1px dashed var(--border-color);
+            color: var(--text-muted);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .reset-btn:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
         }
     </style>
 </head>
@@ -517,21 +548,23 @@
             </div>
         </section>
     </main>
-
-    <!-- Модальное окно Captcha -->
+ <!-- Модальное окно Captcha -->
     <div class="modal" id="captchaModal">
         <div class="modal-content">
             <span class="close-modal" id="closeCaptcha">&times;</span>
-            <h3 style="margin-bottom: 15px;">Подтвердите, что вы не робот</h3>
+            <h3 style="margin-bottom: 10px;">Проверка на бота</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Решите пример для продолжения:</p>
             
-            <!-- Блок Google reCAPTCHA -->
-            <div class="g-recaptcha" data-sitekey="6Ld_sample_key_1234567890abcdef" data-callback="onCaptchaSuccess"></div>
-            
-            <!-- Резервная кнопка, если Google ключ не подключен -->
-            <button class="fallback-captcha-btn" id="fallbackCaptchaBtn">✔ Я не робот (Подтвердить)</button>
+            <div class="captcha-box">
+                <div class="captcha-question" id="captchaQuestion">5 + 3 = ?</div>
+                <input type="number" id="captchaAnswer" class="captcha-input" placeholder="Ответ" autocomplete="off">
+                <div class="captcha-error" id="captchaError">Неверный ответ! Попробуйте еще раз.</div>
+                <button class="btn-link" id="verifyCaptchaBtn" style="margin-top:0;">Подтвердить</button>
+            </div>
         </div>
     </div>
- <!-- Баннер принятия Cookies -->
+
+    <!-- Баннер принятия Cookies -->
     <div class="cookie-banner" id="cookieBanner">
         <p>Мы используем файлы cookie для улучшения работы сайта и сохранения ваших сообщений в чате. Продолжая использовать сайт, вы соглашаетесь с использованием файлов cookie.</p>
         <button class="btn-link" id="acceptCookies" style="margin-top:0; padding: 8px 16px; font-size: 0.85rem;">Принять</button>
@@ -539,16 +572,16 @@
 
     <footer>
         <p>&copy; 2026 Hyunmin. Green & Black Vibe.</p>
+        <button class="reset-btn" id="resetStorageBtn">⚙️ Сбросить тесты (Cookie и Капчу)</button>
     </footer>
 
     <script>
         const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScDw30bm5YaDJGs3bxPCGKo5oFvYg2CwmUVDmjWV_L5lUg6bQ/viewform?usp=header";
         
-        // --- Логика Cookies ---
+        // --- Cookies ---
         const cookieBanner = document.getElementById('cookieBanner');
         const acceptCookiesBtn = document.getElementById('acceptCookies');
 
-        // Проверяем наличие принятия в localStorage
         if (!localStorage.getItem('cookiesAccepted')) {
             cookieBanner.style.display = 'block';
         }
@@ -558,19 +591,37 @@
             cookieBanner.style.display = 'none';
         });
 
-        // --- Логика reCAPTCHA ---
+        // --- Кастомная Локальная Капча ---
         const captchaModal = document.getElementById('captchaModal');
         const closeCaptcha = document.getElementById('closeCaptcha');
         const formTriggers = document.querySelectorAll('.form-captcha-trigger');
-        const fallbackCaptchaBtn = document.getElementById('fallbackCaptchaBtn');
-        
+        const verifyCaptchaBtn = document.getElementById('verifyCaptchaBtn');
+        const captchaQuestion = document.getElementById('captchaQuestion');
+        const captchaAnswer = document.getElementById('captchaAnswer');
+        const captchaError = document.getElementById('captchaError');
+
         let captchaTarget = null; // 'form' или 'chat'
+        let num1 = 0, num2 = 0, correctAnswer = 0;
+
+        function generateCaptcha() {
+            num1 = Math.floor(Math.random() * 10) + 1;
+            num2 = Math.floor(Math.random() * 10) + 1;
+            correctAnswer = num1 + num2;
+            captchaQuestion.textContent = ${num1} + ${num2} = ?;
+            captchaAnswer.value = '';
+            captchaError.style.display = 'none';
+        }
+
+        function openCaptchaModal(target) {
+            captchaTarget = target;
+            generateCaptcha();
+            captchaModal.style.display = 'flex';
+        }
 
         formTriggers.forEach(trigger => {
             trigger.addEventListener('click', (e) => {
                 e.preventDefault();
-                captchaTarget = 'form';
-                captchaModal.style.display = 'flex';
+                openCaptchaModal('form');
             });
         });
 
@@ -578,27 +629,20 @@
             captchaModal.style.display = 'none';
         });
 
-        // Успешный проход капчи
-        function handleCaptchaPassed() {
-            captchaModal.style.display = 'none';
-            if (typeof grecaptcha !== 'undefined' && grecaptcha.reset) {
-                grecaptcha.reset();
+        verifyCaptchaBtn.addEventListener('click', () => {
+            const userAnswer = parseInt(captchaAnswer.value.trim(), 10);
+            if (userAnswer === correctAnswer) {
+                captchaModal.style.display = 'none';
+ if (captchaTarget === 'form') {
+                    window.open(FORM_URL, '_blank');
+                } else if (captchaTarget === 'chat') {
+                    localStorage.setItem('chat_captcha_verified', 'true');
+                    sendMessage();
+                }
+            } else {
+                captchaError.style.display = 'block';
+                generateCaptcha();
             }
-
-            if (captchaTarget === 'form') {
-                window.open(FORM_URL, '_blank');
-            } else if (captchaTarget === 'chat') {
-                localStorage.setItem('chat_captcha_verified', 'true');
-                sendMessage();
-            }
-        }
-
-        window.onCaptchaSuccess = function(token) {
-            handleCaptchaPassed();
-        };
-
-        fallbackCaptchaBtn.addEventListener('click', () => {
-            handleCaptchaPassed();
         });
 
         // --- Логика Чата ---
@@ -629,7 +673,8 @@
                         contentHTML += <video controls class="message-media" src="${msg.file.data}"></video>;
                     }
                 }
- contentHTML += 
+
+                contentHTML += 
                     <div class="message-actions">
                         ${msg.text ? <button class="action-btn" onclick="editMessage(${index})">Ред.</button> : ''}
                         <button class="action-btn" onclick="deleteMessage(${index})">Удалить</button>
@@ -655,8 +700,7 @@
 
             const isCaptchaVerified = localStorage.getItem('chat_captcha_verified');
             if (!isCaptchaVerified) {
-                captchaTarget = 'chat';
-                captchaModal.style.display = 'flex';
+                openCaptchaModal('chat');
                 return;
             }
 
@@ -698,8 +742,7 @@
             messages.splice(index, 1);
             saveAndRender();
         };
-
-        window.editMessage = function(index) {
+ window.editMessage = function(index) {
             const newText = prompt("Редактировать сообщение:", messages[index].text);
             if (newText !== null && newText.trim() !== '') {
                 messages[index].text = newText.trim();
@@ -711,6 +754,14 @@
             localStorage.setItem('chat_messages', JSON.stringify(messages));
             renderMessages();
         }
+
+        // --- Кнопка Сброса Памяти Тестов ---
+        document.getElementById('resetStorageBtn').addEventListener('click', () => {
+            localStorage.removeItem('cookiesAccepted');
+            localStorage.removeItem('chat_captcha_verified');
+            alert('Состояние Cookies и Капчи сброшено. Страница будет перезагружена.');
+            location.reload();
+        });
 
         renderMessages();
     </script>
