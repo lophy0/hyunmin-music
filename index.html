@@ -1,28 +1,29 @@
-<!DOCTYPE html> 
+[03.08.2026 00:47] 𝔏𝔬𝔭𝔥𝔶: <!DOCTYPE html> 
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NJZW4L5V');</script>
-<!-- End Google Tag Manager -->
-<meta name="yandex-verification" content="16969eea7aa29c3c" />
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google.com https://www.gstatic.com data: blob:; style-src 'self' 'unsafe-inline' https://www.google.com; img-src 'self' data: blob: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google.com https://www.gstatic.com; frame-src https://www.googletagmanager.com https://docs.google.com https://www.google.com;">
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NJZW4L5V');</script>
+    <!-- End Google Tag Manager -->
+    
+    <meta name="yandex-verification" content="16969eea7aa29c3c" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hyunmin // Space & Live Chat</title>
+    
     <!-- Подключение reCAPTCHA API -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    
     <style>
         :root {
             --bg-color: #070807;
             --card-bg: #111412;
-            --accent-color: #8ACE00; /* Зеленый цвет */
-            --accent-hover: #75b000; /* Цвет при наведении */
-            --accent-glow: rgba(138, 206, 0, 0.25); /* Свечение */
+            --accent-color: #8ACE00;
+            --accent-hover: #75b000;
+            --accent-glow: rgba(138, 206, 0, 0.25);
             --text-color: #f0f0f0;
             --text-muted: #8a948e;
             --border-color: #1e2621;
@@ -116,7 +117,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             font-size: 1.15rem;
             margin-bottom: 30px;
         }
-section {
+
+        section {
             padding: 50px 5%;
             max-width: 950px;
             margin: 0 auto;
@@ -139,8 +141,7 @@ section {
             box-shadow: 0 0 10px var(--accent-glow);
             border-radius: 2px;
         }
-
-        .about-grid {
+[03.08.2026 00:47] 𝔏𝔬𝔭𝔥𝔶: .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
@@ -207,7 +208,7 @@ section {
             transform: translateY(-2px);
         }
 
-        /* Стили чата */
+        /* Чат */
         .chat-container {
             background-color: var(--chat-bg);
             border: 1px solid var(--border-color);
@@ -266,7 +267,8 @@ section {
             border: 1px solid var(--border-color);
             align-self: flex-start;
         }
-.message.artist .author {
+
+        .message.artist .author {
             color: var(--accent-color);
             font-weight: bold;
             font-size: 0.8rem;
@@ -291,8 +293,7 @@ section {
             margin-top: 8px;
             border-radius: 8px;
         }
-
-        .message-actions {
+[03.08.2026 00:47] 𝔏𝔬𝔭𝔥𝔶: .message-actions {
             display: flex;
             gap: 8px;
             margin-top: 6px;
@@ -386,6 +387,7 @@ section {
             border-radius: 12px;
             text-align: center;
             position: relative;
+            min-width: 300px;
         }
 
         .close-modal {
@@ -395,6 +397,24 @@ section {
             color: var(--text-muted);
             font-size: 1.5rem;
             cursor: pointer;
+        }
+
+        /* Резервная кнопка капчи (если API Google не подрубился) */
+        .fallback-captcha-btn {
+            background: var(--bg-color);
+            border: 1px solid var(--accent-color);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: 0.2s;
+        }
+
+        .fallback-captcha-btn:hover {
+            background: var(--accent-color);
+            color: #000;
         }
 
         /* Баннер Cookie */
@@ -418,7 +438,7 @@ section {
             color: var(--text-muted);
             margin-bottom: 12px;
         }
- footer {
+[03.08.2026 00:47] 𝔏𝔬𝔭𝔥𝔶: footer {
             text-align: center;
             padding: 30px;
             border-top: 1px solid var(--border-color);
@@ -466,7 +486,6 @@ section {
         <section id="chat">
             <h2 class="section-title">Коллаборации & Чат</h2>
             
-            <!-- Карточка-ссылка на Google Форму -->
             <div class="form-banner">
                 <div class="form-banner-text">
                     <h3>Хочешь совместный трек или фит?</h3>
@@ -499,16 +518,20 @@ section {
         </section>
     </main>
 
-    <!-- Модальное окно reCAPTCHA -->
+    <!-- Модальное окно Captcha -->
     <div class="modal" id="captchaModal">
         <div class="modal-content">
             <span class="close-modal" id="closeCaptcha">&times;</span>
             <h3 style="margin-bottom: 15px;">Подтвердите, что вы не робот</h3>
-            <!-- Замените data-sitekey на ваш настоящий ключ сайтов Google reCAPTCHA -->
+            
+            <!-- Блок Google reCAPTCHA -->
             <div class="g-recaptcha" data-sitekey="6Ld_sample_key_1234567890abcdef" data-callback="onCaptchaSuccess"></div>
+            
+            <!-- Резервная кнопка, если Google ключ не подключен -->
+            <button class="fallback-captcha-btn" id="fallbackCaptchaBtn">✔ Я не робот (Подтвердить)</button>
         </div>
     </div>
- <!-- Баннер принятия Cookies -->
+[03.08.2026 00:47] 𝔏𝔬𝔭𝔥𝔶: <!-- Баннер принятия Cookies -->
     <div class="cookie-banner" id="cookieBanner">
         <p>Мы используем файлы cookie для улучшения работы сайта и сохранения ваших сообщений в чате. Продолжая использовать сайт, вы соглашаетесь с использованием файлов cookie.</p>
         <button class="btn-link" id="acceptCookies" style="margin-top:0; padding: 8px 16px; font-size: 0.85rem;">Принять</button>
@@ -525,6 +548,7 @@ section {
         const cookieBanner = document.getElementById('cookieBanner');
         const acceptCookiesBtn = document.getElementById('acceptCookies');
 
+        // Проверяем наличие принятия в localStorage
         if (!localStorage.getItem('cookiesAccepted')) {
             cookieBanner.style.display = 'block';
         }
@@ -534,10 +558,11 @@ section {
             cookieBanner.style.display = 'none';
         });
 
-        // --- Логика reCAPTCHA & Модального окна ---
+        // --- Логика reCAPTCHA ---
         const captchaModal = document.getElementById('captchaModal');
         const closeCaptcha = document.getElementById('closeCaptcha');
         const formTriggers = document.querySelectorAll('.form-captcha-trigger');
+        const fallbackCaptchaBtn = document.getElementById('fallbackCaptchaBtn');
         
         let captchaTarget = null; // 'form' или 'chat'
 
@@ -553,18 +578,28 @@ section {
             captchaModal.style.display = 'none';
         });
 
-        window.onCaptchaSuccess = function(token) {
+        // Успешный проход капчи
+        function handleCaptchaPassed() {
             captchaModal.style.display = 'none';
-            if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
+            if (typeof grecaptcha !== 'undefined' && grecaptcha.reset) {
+                grecaptcha.reset();
+            }
 
             if (captchaTarget === 'form') {
                 window.open(FORM_URL, '_blank');
             } else if (captchaTarget === 'chat') {
                 localStorage.setItem('chat_captcha_verified', 'true');
-                // После успешного взаимодействия отправляем подготовленное сообщение
                 sendMessage();
             }
+        }
+
+        window.onCaptchaSuccess = function(token) {
+            handleCaptchaPassed();
         };
+
+        fallbackCaptchaBtn.addEventListener('click', () => {
+            handleCaptchaPassed();
+        });
 
         // --- Логика Чата ---
         const chatForm = document.getElementById('chatForm');
@@ -594,14 +629,14 @@ section {
                         contentHTML += <video controls class="message-media" src="${msg.file.data}"></video>;
                     }
                 }
-
-                contentHTML += 
+[03.08.2026 00:47] 𝔏𝔬𝔭𝔥𝔶: contentHTML += 
                     <div class="message-actions">
                         ${msg.text ? <button class="action-btn" onclick="editMessage(${index})">Ред.</button> : ''}
                         <button class="action-btn" onclick="deleteMessage(${index})">Удалить</button>
                     </div>
                 ;
- msgDiv.innerHTML = contentHTML;
+
+                msgDiv.innerHTML = contentHTML;
                 chatMessages.appendChild(msgDiv);
             });
             chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -618,7 +653,6 @@ section {
 
             if (!text && !file) return;
 
-            // Проверяем, проходил ли пользователь капчу для чата
             const isCaptchaVerified = localStorage.getItem('chat_captcha_verified');
             if (!isCaptchaVerified) {
                 captchaTarget = 'chat';
@@ -678,7 +712,6 @@ section {
             renderMessages();
         }
 
-        // Загрузка сохраненных сообщений при старте
         renderMessages();
     </script>
 </body>
