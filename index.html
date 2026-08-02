@@ -1,4 +1,4 @@
-[03.08.2026 00:47] 𝔏𝔬𝔭𝔥𝔶: <!DOCTYPE html> 
+<!DOCTYPE html> 
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -141,7 +141,7 @@
             box-shadow: 0 0 10px var(--accent-glow);
             border-radius: 2px;
         }
-[03.08.2026 00:47] 𝔏𝔬𝔭𝔥𝔶: .about-grid {
+ .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
@@ -293,7 +293,7 @@
             margin-top: 8px;
             border-radius: 8px;
         }
-[03.08.2026 00:47] 𝔏𝔬𝔭𝔥𝔶: .message-actions {
+ .message-actions {
             display: flex;
             gap: 8px;
             margin-top: 6px;
@@ -438,7 +438,7 @@
             color: var(--text-muted);
             margin-bottom: 12px;
         }
-[03.08.2026 00:47] 𝔏𝔬𝔭𝔥𝔶: footer {
+ footer {
             text-align: center;
             padding: 30px;
             border-top: 1px solid var(--border-color);
@@ -531,7 +531,7 @@
             <button class="fallback-captcha-btn" id="fallbackCaptchaBtn">✔ Я не робот (Подтвердить)</button>
         </div>
     </div>
-[03.08.2026 00:47] 𝔏𝔬𝔭𝔥𝔶: <!-- Баннер принятия Cookies -->
+ <!-- Баннер принятия Cookies -->
     <div class="cookie-banner" id="cookieBanner">
         <p>Мы используем файлы cookie для улучшения работы сайта и сохранения ваших сообщений в чате. Продолжая использовать сайт, вы соглашаетесь с использованием файлов cookie.</p>
         <button class="btn-link" id="acceptCookies" style="margin-top:0; padding: 8px 16px; font-size: 0.85rem;">Принять</button>
@@ -629,7 +629,7 @@
                         contentHTML += <video controls class="message-media" src="${msg.file.data}"></video>;
                     }
                 }
-[03.08.2026 00:47] 𝔏𝔬𝔭𝔥𝔶: contentHTML += 
+ contentHTML += 
                     <div class="message-actions">
                         ${msg.text ? <button class="action-btn" onclick="editMessage(${index})">Ред.</button> : ''}
                         <button class="action-btn" onclick="deleteMessage(${index})">Удалить</button>
