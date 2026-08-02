@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html> 
+﻿[03.08.2026 00:38] 𝔏𝔬𝔭𝔥𝔶: <!DOCTYPE html> 
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -11,9 +11,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <meta name="yandex-verification" content="16969eea7aa29c3c" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google.com https://www.gstatic.com data: blob:; style-src 'self' 'unsafe-inline' https://www.google.com; img-src 'self' data: blob: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google.com https://www.gstatic.com; frame-src https://www.googletagmanager.com https://docs.google.com https://www.google.com;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hyunmin // Space & Live Chat</title>
+    <!-- Подключение reCAPTCHA API -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         :root {
             --bg-color: #070807;
@@ -38,10 +40,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NJZW4L5V"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
         }
 
         header {
@@ -118,8 +116,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             font-size: 1.15rem;
             margin-bottom: 30px;
         }
-
-        section {
+[03.08.2026 00:38] 𝔏𝔬𝔭𝔥𝔶: section {
             padding: 50px 5%;
             max-width: 950px;
             margin: 0 auto;
@@ -166,13 +163,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             color: var(--accent-color);
             margin-bottom: 10px;
         }
-/* Баннер для Google Формы */
+
         .form-banner {
             background: linear-gradient(135deg, var(--card-bg) 0%, #172017 100%);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 25px;
-            margin-bottom: 35px; /* Отступ от блока чата */
+            margin-bottom: 35px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -199,8 +196,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             text-decoration: none;
             padding: 12px 24px;
             border-radius: 8px;
-            margin-top: 12px; /* Маленький отступ от текста над кнопкой */
+            margin-top: 12px;
             transition: background 0.2s, transform 0.2s;
+            cursor: pointer;
+            border: none;
         }
 
         .btn-link:hover {
@@ -208,6 +207,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             transform: translateY(-2px);
         }
 
+        /* Стили чата */
         .chat-container {
             background-color: var(--chat-bg);
             border: 1px solid var(--border-color);
@@ -215,7 +215,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            height: 500px;
+            height: 550px;
         }
 
         .chat-header {
@@ -253,10 +253,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
 
         .message {
-            max-width: 75%;
+            max-width: 80%;
             padding: 12px 16px;
             border-radius: 12px;
             font-size: 0.95rem;
+            position: relative;
+            word-break: break-word;
         }
 
         .message.artist {
@@ -264,8 +266,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             border: 1px solid var(--border-color);
             align-self: flex-start;
         }
-
-        .message.artist .author {
+[03.08.2026 00:38] 𝔏𝔬𝔭𝔥𝔶: .message.artist .author {
             color: var(--accent-color);
             font-weight: bold;
             font-size: 0.8rem;
@@ -275,13 +276,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         .message.artist a {
             color: var(--accent-color);
             text-decoration: underline;
+            cursor: pointer;
         }
 
         .message.user {
-            background-color: var(--accent-color);
-            color: #000;
-            font-weight: 600;
+            background-color: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            color: #fff;
             align-self: flex-end;
+        }
+
+        .message-media {
+            max-width: 100%;
+            margin-top: 8px;
+            border-radius: 8px;
+        }
+
+        .message-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 6px;
+            justify-content: flex-end;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .action-btn:hover {
+            color: var(--accent-color);
         }
 
         .chat-input-area {
@@ -290,9 +318,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             border-top: 1px solid var(--border-color);
             display: flex;
             gap: 10px;
+            align-items: center;
         }
 
-        .chat-input-area input {
+        .chat-input-area input[type="text"] {
             flex: 1;
             background-color: var(--bg-color);
             border: 1px solid var(--border-color);
@@ -302,14 +331,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             outline: none;
         }
 
-        .chat-input-area input:focus {
+        .chat-input-area input[type="text"]:focus {
             border-color: var(--accent-color);
         }
-.send-btn {
+
+        .file-label {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .file-label:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .send-btn {
             background-color: var(--accent-color);
             color: #000;
             border: none;
-            padding: 0 20px;
+            padding: 12px 20px;
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
@@ -320,7 +365,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             background-color: var(--accent-hover);
         }
 
-        footer {
+        /* Модальное окно Captcha */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Баннер Cookie */
+        .cookie-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            max-width: 500px;
+            background: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            padding: 20px;
+            border-radius: 12px;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            display: none;
+        }
+
+        .cookie-banner p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+[03.08.2026 00:38] 𝔏𝔬𝔭𝔥𝔶: footer {
             text-align: center;
             padding: 30px;
             border-top: 1px solid var(--border-color);
@@ -330,6 +428,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </style>
 </head>
 <body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NJZW4L5V"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <header>
         <div class="logo">HYUN<span>MIN</span></div>
@@ -368,7 +471,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="form-banner-text">
                     <h3>Хочешь совместный трек или фит?</h3>
                     <p>Заполни анкету, чтобы обсудить детали.</p>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScDw30bm5YaDJGs3bxPCGKo5oFvYg2CwmUVDmjWV_L5lUg6bQ/viewform?usp=header" target="_blank" class="btn-link">Заполнить анкету</a>
+                    <button class="btn-link form-captcha-trigger">Заполнить анкету</button>
                 </div>
             </div>
 
@@ -383,38 +486,200 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="chat-messages" id="chatMessages">
                     <div class="message artist">
                         <div class="author">Админ</div>
-                        Привет! Закидывай сюда свои идеи, свое творчество или просто пиши. А если хочешь подать заявку на фит — заполняй <a href="https://docs.google.com/forms/d/e/1FAIpQLScDw30bm5YaDJGs3bxPCGKo5oFvYg2CwmUVDmjWV_L5lUg6bQ/viewform?usp=header" target="_blank">Google Форму</a>!
+                        Привет! Закидывай сюда свои идеи, свое творчество или просто пиши. А если хочешь подать заявку на фит — заполняй <a class="form-captcha-trigger">Google Форму</a>!
                     </div>
                 </div>
                 <form class="chat-input-area" id="chatForm">
-                    <input type="text" id="userInput" placeholder="Написать..." required autocomplete="off">
+                    <label class="file-label" for="fileInput" title="Прикрепить аудио/видео">📷/🎵</label>
+                    <input type="file" id="fileInput" accept="audio/*,video/*" style="display:none;">
+                    <input type="text" id="userInput" placeholder="Написать..." autocomplete="off">
                     <button type="submit" class="send-btn">Отправить</button>
                 </form>
             </div>
         </section>
     </main>
 
+    <!-- Модальное окно reCAPTCHA -->
+    <div class="modal" id="captchaModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeCaptcha">&times;</span>
+            <h3 style="margin-bottom: 15px;">Подтвердите, что вы не робот</h3>
+            <!-- Замените data-sitekey на ваш настоящий ключ сайтов Google reCAPTCHA -->
+            <div class="g-recaptcha" data-sitekey="6Ld_sample_key_1234567890abcdef" data-callback="onCaptchaSuccess"></div>
+        </div>
+    </div>
+[03.08.2026 00:38] 𝔏𝔬𝔭𝔥𝔶: <!-- Баннер принятия Cookies -->
+    <div class="cookie-banner" id="cookieBanner">
+        <p>Мы используем файлы cookie для улучшения работы сайта и сохранения ваших сообщений в чате. Продолжая использовать сайт, вы соглашаетесь с использованием файлов cookie.</p>
+        <button class="btn-link" id="acceptCookies" style="margin-top:0; padding: 8px 16px; font-size: 0.85rem;">Принять</button>
+    </div>
+
     <footer>
         <p>&copy; 2026 Hyunmin. Green & Black Vibe.</p>
     </footer>
 
     <script>
+        const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScDw30bm5YaDJGs3bxPCGKo5oFvYg2CwmUVDmjWV_L5lUg6bQ/viewform?usp=header";
+        
+        // --- Логика Cookies ---
+        const cookieBanner = document.getElementById('cookieBanner');
+        const acceptCookiesBtn = document.getElementById('acceptCookies');
+
+        if (!localStorage.getItem('cookiesAccepted')) {
+            cookieBanner.style.display = 'block';
+        }
+
+        acceptCookiesBtn.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieBanner.style.display = 'none';
+        });
+
+        // --- Логика reCAPTCHA & Модального окна ---
+        const captchaModal = document.getElementById('captchaModal');
+        const closeCaptcha = document.getElementById('closeCaptcha');
+        const formTriggers = document.querySelectorAll('.form-captcha-trigger');
+        
+        let captchaTarget = null; // 'form' или 'chat'
+
+        formTriggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                captchaTarget = 'form';
+                captchaModal.style.display = 'flex';
+            });
+        });
+
+        closeCaptcha.addEventListener('click', () => {
+            captchaModal.style.display = 'none';
+        });
+
+        window.onCaptchaSuccess = function(token) {
+            captchaModal.style.display = 'none';
+            if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
+
+            if (captchaTarget === 'form') {
+                window.open(FORM_URL, '_blank');
+            } else if (captchaTarget === 'chat') {
+                localStorage.setItem('chat_captcha_verified', 'true');
+                // После успешного взаимодействия отправляем подготовленное сообщение
+                sendMessage();
+            }
+        };
+
+        // --- Логика Чата ---
         const chatForm = document.getElementById('chatForm');
         const chatMessages = document.getElementById('chatMessages');
         const userInput = document.getElementById('userInput');
+        const fileInput = document.getElementById('fileInput');
+
+        let messages = JSON.parse(localStorage.getItem('chat_messages')) || [];
+
+        function renderMessages() {
+            const existingUserMsgs = chatMessages.querySelectorAll('.message.user');
+            existingUserMsgs.forEach(msg => msg.remove());
+
+            messages.forEach((msg, index) => {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'message user';
+                
+                let contentHTML = '';
+                if(msg.text) {
+                    contentHTML += <div class="msg-text">${escapeHtml(msg.text)}</div>;
+                }
+
+                if (msg.file) {
+                    if (msg.file.type.startsWith('audio/')) {
+                        contentHTML += <audio controls class="message-media" src="${msg.file.data}"></audio>;
+                    } else if (msg.file.type.startsWith('video/')) {
+                        contentHTML += <video controls class="message-media" src="${msg.file.data}"></video>;
+                    }
+                }
+
+                contentHTML += 
+                    <div class="message-actions">
+                        ${msg.text ? <button class="action-btn" onclick="editMessage(${index})">Ред.</button> : ''}
+                        <button class="action-btn" onclick="deleteMessage(${index})">Удалить</button>
+                    </div>
+                ;
+[03.08.2026 00:38] 𝔏𝔬𝔭𝔥𝔶: msgDiv.innerHTML = contentHTML;
+                chatMessages.appendChild(msgDiv);
+            });
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
 
         chatForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const text = userInput.value.trim();
-            if(!text) return;
-const userMsg = document.createElement('div');
-            userMsg.className = 'message user';
-            userMsg.textContent = text;
-            chatMessages.appendChild(userMsg);
+            const file = fileInput.files[0];
+
+            if (!text && !file) return;
+
+            // Проверяем, проходил ли пользователь капчу для чата
+            const isCaptchaVerified = localStorage.getItem('chat_captcha_verified');
+            if (!isCaptchaVerified) {
+                captchaTarget = 'chat';
+                captchaModal.style.display = 'flex';
+                return;
+            }
+
+            sendMessage();
+        });
+
+        async function sendMessage() {
+            const text = userInput.value.trim();
+            const file = fileInput.files[0];
+
+            if (!text && !file) return;
+
+            let fileData = null;
+            if (file) {
+                fileData = {
+                    name: file.name,
+                    type: file.type,
+                    data: await fileToBase64(file)
+                };
+            }
+
+            messages.push({ text, file: fileData });
+            saveAndRender();
 
             userInput.value = '';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        });
+            fileInput.value = '';
+        }
+
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        window.deleteMessage = function(index) {
+            messages.splice(index, 1);
+            saveAndRender();
+        };
+
+        window.editMessage = function(index) {
+            const newText = prompt("Редактировать сообщение:", messages[index].text);
+            if (newText !== null && newText.trim() !== '') {
+                messages[index].text = newText.trim();
+                saveAndRender();
+            }
+        };
+
+        function saveAndRender() {
+            localStorage.setItem('chat_messages', JSON.stringify(messages));
+            renderMessages();
+        }
+
+        // Загрузка сохраненных сообщений при старте
+        renderMessages();
     </script>
 </body>
 </html>
