@@ -1,4 +1,4 @@
- <!DOCTYPE html> 
+[03.08.2026 20:52] 𝔏𝔬𝔭𝔥𝔶: <!DOCTYPE html> 
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -12,19 +12,20 @@
     
     <meta name="yandex-verification" content="16969eea7aa29c3c" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hyunmin // Space & Live Chat</title>
+    <title>Hyunmin // Space & Community</title>
     
     <style>
         :root {
-            --bg-color: #070807;
-            --card-bg: #111412;
+            --bg-color: #050605;
+            --card-bg: #0e120f;
             --accent-color: #8ACE00;
-            --accent-hover: #75b000;
-            --accent-glow: rgba(138, 206, 0, 0.25);
+            --accent-hover: #9bf200;
+            --accent-purple: #a855f7;
+            --accent-glow: rgba(138, 206, 0, 0.35);
+            --purple-glow: rgba(168, 85, 247, 0.25);
             --text-color: #f0f0f0;
             --text-muted: #8a948e;
-            --border-color: #1e2621;
-            --chat-bg: #0d100e;
+            --border-color: #1a241c;
         }
 
         * {
@@ -42,20 +43,48 @@
             overflow-x: hidden;
         }
 
-        /* Декоративный светящийся фон */
+        /* --- Декоративный фон: Сетка + Неоновые сферы --- */
         body::before {
             content: '';
             position: fixed;
-            top: -200px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(138, 206, 0, 0.08) 0%, rgba(0,0,0,0) 70%);
-            z-index: -1;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: 
+                linear-gradient(to right, rgba(138, 206, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(138, 206, 0, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
             pointer-events: none;
         }
 
+        .glow-sphere-1 {
+            position: fixed;
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+            filter: blur(50px);
+        }
+
+        .glow-sphere-2 {
+            position: fixed;
+            bottom: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--purple-glow) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+            filter: blur(60px);
+        }
+
+        /* --- Шапка с анимированной неоновой полосой --- */
         header {
             display: flex;
             justify-content: space-between;
@@ -64,9 +93,25 @@
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
-            background-color: rgba(7, 8, 7, 0.85);
-            backdrop-filter: blur(12px);
+            background-color: rgba(5, 6, 5, 0.85);
+            backdrop-filter: blur(15px);
             z-index: 100;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), var(--accent-purple), transparent);
+            animation: glow-line 4s infinite linear;
+        }
+
+        @keyframes glow-line {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
 
         .logo {
@@ -78,7 +123,11 @@
 
         .logo span {
             color: var(--accent-color);
-            text-shadow: 0 0 10px var(--accent-glow);
+            text-shadow: 0 0 12px var(--accent-glow);
+        }
+[03.08.2026 20:52] 𝔏𝔬𝔭𝔥𝔶: nav {
+            display: flex;
+            align-items: center;
         }
 
         nav a {
@@ -87,10 +136,40 @@
             margin-left: 20px;
             font-size: 0.95rem;
             transition: 0.3s;
+            position: relative;
         }
 
         nav a:hover {
             color: var(--accent-color);
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            background: rgba(138, 206, 0, 0.1);
+            border: 1px solid var(--accent-color);
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-left: 15px;
+            color: var(--accent-color);
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-color);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.3); }
+            100% { opacity: 0.4; transform: scale(0.9); }
         }
 
         .hero {
@@ -102,16 +181,16 @@
 
         .hero-badge {
             display: inline-block;
-            background: rgba(138, 206, 0, 0.1);
+            background: linear-gradient(135deg, rgba(138, 206, 0, 0.15), rgba(168, 85, 247, 0.15));
             color: var(--accent-color);
             border: 1px solid var(--accent-color);
-            padding: 4px 14px;
+            padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.8rem;
             letter-spacing: 2px;
             margin-bottom: 20px;
             text-transform: uppercase;
-            box-shadow: 0 0 12px var(--accent-glow);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
         .hero h1 {
@@ -122,8 +201,10 @@
         }
 
         .hero h1 span {
-            color: var(--accent-color);
-            text-shadow: 0 0 20px var(--accent-glow);
+            background: linear-gradient(135deg, var(--accent-color), #bbf7d0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px var(--accent-glow));
         }
 
         .hero p {
@@ -139,13 +220,34 @@
             margin-top: 30px;
             flex-wrap: wrap;
         }
- .stat-item {
-            background: var(--card-bg);
+
+        .stat-item {
+            background: rgba(14, 18, 15, 0.7);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
-            padding: 12px 24px;
-            border-radius: 10px;
+            padding: 14px 28px;
+            border-radius: 12px;
             font-size: 0.85rem;
             color: var(--text-muted);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-purple));
+        }
+
+        .stat-item:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
         }
 
         .stat-item strong {
@@ -165,17 +267,16 @@
             margin-bottom: 25px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
-
-        .section-title::before {
+[03.08.2026 20:52] 𝔏𝔬𝔭𝔥𝔶: .section-title::before {
             content: '';
             display: inline-block;
             width: 8px;
             height: 24px;
-            background: var(--accent-color);
-            box-shadow: 0 0 10px var(--accent-glow);
-            border-radius: 2px;
+            background: linear-gradient(180deg, var(--accent-color), var(--accent-purple));
+            box-shadow: 0 0 12px var(--accent-glow);
+            border-radius: 4px;
         }
 
         .about-grid {
@@ -185,17 +286,19 @@
         }
 
         .card {
-            background-color: var(--card-bg);
+            background: rgba(14, 18, 15, 0.7);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
             padding: 25px;
-            border-radius: 12px;
-            transition: transform 0.3s, border-color 0.3s;
+            border-radius: 14px;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .card:hover {
             border-color: var(--accent-color);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-glow);
         }
 
         .card h3 {
@@ -204,16 +307,30 @@
         }
 
         .form-banner {
-            background: linear-gradient(135deg, var(--card-bg) 0%, #172017 100%);
+            background: linear-gradient(135deg, rgba(14, 18, 15, 0.9) 0%, rgba(20, 32, 20, 0.8) 100%);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 25px;
+            border-radius: 14px;
+            padding: 30px;
             margin-bottom: 35px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-banner::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .form-banner-text h3 {
@@ -229,187 +346,79 @@
 
         .btn-link {
             display: inline-block;
-            background-color: var(--accent-color);
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
             color: #000;
             font-weight: 700;
             text-decoration: none;
-            padding: 12px 24px;
+            padding: 12px 26px;
             border-radius: 8px;
-            transition: background 0.2s, transform 0.2s;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 15px var(--accent-glow);
+            z-index: 1;
         }
 
         .btn-link:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 0 22px rgba(138, 206, 0, 0.6);
         }
 
-        /* Блок Чата */
-        .chat-container {
-            background-color: var(--chat-bg);
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .social-card {
+            background: rgba(14, 18, 15, 0.7);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            overflow: hidden;
+            border-radius: 14px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
-            height: 550px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-        }
-
-        .chat-header {
-            background-color: var(--card-bg);
-            padding: 15px 20px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
             justify-content: space-between;
-        }
-
-        .chat-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent-color);
-        }
-
-        .chat-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
             gap: 15px;
-        }
- .message {
-            max-width: 80%;
-            padding: 12px 16px;
-            border-radius: 12px;
-            font-size: 0.95rem;
+            transition: all 0.3s ease;
             position: relative;
-            word-break: break-word;
         }
 
-        .message.artist {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            align-self: flex-start;
+        .social-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-glow);
         }
 
-        .message.artist .author {
-            color: var(--accent-color);
-            font-weight: bold;
-            font-size: 0.8rem;
-            margin-bottom: 4px;
-        }
-
-        .message.artist a {
-            color: var(--accent-color);
-            text-decoration: underline;
-        }
-
-        .message.user {
-            background-color: var(--card-bg);
-            border: 1px solid var(--accent-color);
+        .social-card h3 {
             color: #fff;
-            align-self: flex-end;
-            box-shadow: 0 0 10px rgba(138, 206, 0, 0.1);
-        }
-
-        .message-media {
-            max-width: 100%;
-            margin-top: 8px;
-            border-radius: 8px;
-            display: block;
-        }
-
-        audio.message-media {
-            width: 100%;
-            height: 40px;
-        }
-
-        .message-actions {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
             display: flex;
+            align-items: center;
             gap: 8px;
-            margin-top: 6px;
-            justify-content: flex-end;
         }
 
-        .action-btn {
-            background: none;
-            border: none;
+        .social-card p {
             color: var(--text-muted);
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: color 0.2s;
+            font-size: 0.95rem;
         }
-
-        .action-btn:hover {
+[03.08.2026 20:52] 𝔏𝔬𝔭𝔥𝔶: .btn-secondary {
+            display: inline-block;
+            text-align: center;
+            background-color: transparent;
             color: var(--accent-color);
-        }
-
-        .chat-input-area {
-            padding: 15px;
-            background-color: var(--card-bg);
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .chat-input-area input[type="text"] {
-            flex: 1;
-            background-color: var(--bg-color);
-            border: 1px solid var(--border-color);
-            padding: 12px 15px;
+            border: 1px solid var(--accent-color);
+            font-weight: 700;
+            text-decoration: none;
+            padding: 10px 20px;
             border-radius: 8px;
-            color: #fff;
-            outline: none;
+            transition: all 0.2s ease;
         }
 
-        .chat-input-area input[type="text"]:focus {
-            border-color: var(--accent-color);
-        }
-
-        .file-label {
-            background-color: var(--bg-color);
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            padding: 10px 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.2s;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .file-label:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-        }
-
-        .send-btn {
-            background-color: var(--accent-color);
+        .btn-secondary:hover {
+            background: var(--accent-color);
             color: #000;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .send-btn:hover {
-            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
         footer {
@@ -418,10 +427,15 @@
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
             font-size: 0.85rem;
+            background: rgba(5, 6, 5, 0.9);
         }
     </style>
 </head>
 <body>
+
+    <!-- Световые неоновые пятна -->
+    <div class="glow-sphere-1"></div>
+    <div class="glow-sphere-2"></div>
 
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NJZW4L5V"
@@ -432,10 +446,16 @@
         <div class="logo">HYUN<span>MIN</span></div>
         <nav>
             <a href="#about">Жанры</a>
-            <a href="#chat">Коллабы & Чат</a>
+            <a href="#collab">Коллабы</a>
+            <a href="#community">Сообщество</a>
+            <div class="status-badge">
+                <div class="status-dot"></div>
+                <span>LIVE</span>
+            </div>
         </nav>
     </header>
- <main>
+
+    <main>
         <section class="hero">
             <div class="hero-badge">R&B / Multi-Genre Artist</div>
             <h1>Звук, вайб и <span>наборы на коллабы</span></h1>
@@ -444,15 +464,15 @@
             <div class="hero-stats">
                 <div class="stat-item">
                     <strong>R&B / Soul</strong>
-                    Основной жанр
+                    Основной стиль
                 </div>
                 <div class="stat-item">
-                    <strong>Открыто</strong>
-                    Для совместных проектов
+                    <strong>Открыт</strong>
+                    К совместным трекам
                 </div>
                 <div class="stat-item">
-                    <strong>Live Space</strong>
-                    Общение онлайн
+                    <strong>Community</strong>
+                    Telegram & Discord
                 </div>
             </div>
         </section>
@@ -471,8 +491,8 @@
             </div>
         </section>
 
-        <section id="chat">
-            <h2 class="section-title">Коллаборации & Чат</h2>
+        <section id="collab">
+            <h2 class="section-title">Коллаборации</h2>
             
             <div class="form-banner">
                 <div class="form-banner-text">
@@ -481,28 +501,28 @@
                 </div>
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLScDw30bm5YaDJGs3bxPCGKo5oFvYg2CwmUVDmjWV_L5lUg6bQ/viewform?usp=header" target="_blank" class="btn-link">Заполнить анкету</a>
             </div>
+        </section>
 
-            <div class="chat-container">
-                <div class="chat-header">
-                    <span>Live Chat</span>
-                    <div class="chat-status">
-                        <div class="status-dot"></div>
-                        <span>Online</span>
+        <section id="community">
+            <h2 class="section-title">Сообщество</h2>
+            <div class="social-grid">
+                
+                <div class="social-card">
+[03.08.2026 20:52] 𝔏𝔬𝔭𝔥𝔶: <div>
+                        <h3><span>📢</span> Telegram Канал</h3>
+                        <p>Свежие новости, анонсы треков, бекстейджи и оперативные обновления проекта.</p>
                     </div>
+                    <a href="https://t.me/+HzGr4kXFwhVjZDEy" target="_blank" class="btn-secondary">Подписаться</a>
                 </div>
-                <div class="chat-messages" id="chatMessages">
-                    <div class="message artist">
-                        <div class="author">Админ</div>
-                        Привет! Закидывай сюда свои идеи, свои демо (аудио/видео) или просто пиши. А если хочешь подать заявку на фит — заполняй <a href="https://docs.google.com/forms/d/e/1FAIpQLScDw30bm5YaDJGs3bxPCGKo5oFvYg2CwmUVDmjWV_L5lUg6bQ/viewform?usp=header" target="_blank">Google Форму</a>!
+
+                <div class="social-card">
+                    <div>
+                        <h3><span>💬</span> Discord Сервер</h3>
+                        <p>Общение, обмен демо-записями, обсуждение коллабораций и фитов в реальном времени.</p>
                     </div>
+                    <a href="https://discord.gg/gTPwvwfuh" target="_blank" class="btn-secondary">Присоединиться</a>
                 </div>
-                <form class="chat-input-area" id="chatForm">
-                    <label class="file-label" for="fileInput" title="Прикрепить аудио/видео">📷/🎵</label>
-                    <input type="file" id="fileInput" accept="audio/*,video/*" style="display:none;">
-                    
-                    <input type="text" id="userInput" placeholder="Написать сообщение..." autocomplete="off">
-                    <button type="submit" class="send-btn">Отправить</button>
-                </form>
+
             </div>
         </section>
     </main>
@@ -511,127 +531,5 @@
         <p>&copy; 2026 Hyunmin. Green & Black Vibe.</p>
     </footer>
 
-    <script>
-        const chatForm = document.getElementById('chatForm');
-        const chatMessages = document.getElementById('chatMessages');
-        const userInput = document.getElementById('userInput');
-        const fileInput = document.getElementById('fileInput');
-
-        let messages = [];
-        try {
-            messages = JSON.parse(localStorage.getItem('chat_messages')) || [];
-        } catch (e) {
-            messages = [];
-        }
-
-        function renderMessages() {
-            const userMsgs = chatMessages.querySelectorAll('.message.user');
-            userMsgs.forEach(msg => msg.remove());
- messages.forEach((msg, index) => {
-                const msgDiv = document.createElement('div');
-                msgDiv.className = 'message user';
-                
-                let contentHTML = '';
-                if (msg.text) {
-                    contentHTML += <div class="msg-text">${escapeHtml(msg.text)}</div>;
-                }
-
-                if (msg.file && msg.file.data) {
-                    if (msg.file.type.startsWith('audio/')) {
-                        contentHTML += <audio controls class="message-media" src="${msg.file.data}"></audio>;
-                    } else if (msg.file.type.startsWith('video/')) {
-                        contentHTML += <video controls class="message-media" src="${msg.file.data}"></video>;
-                    }
-                }
-
-                contentHTML += 
-                    <div class="message-actions">
-                        ${msg.text ? <button type="button" class="action-btn" onclick="editMessage(${index})">Ред.</button> : ''}
-                        <button type="button" class="action-btn" onclick="deleteMessage(${index})">Удалить</button>
-                    </div>
-                ;
-
-                msgDiv.innerHTML = contentHTML;
-                chatMessages.appendChild(msgDiv);
-            });
-
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function escapeHtml(text) {
-            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        }
-
-        chatForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const text = userInput.value.trim();
-            const file = fileInput.files[0];
-
-            if (!text && !file) return false;
-
-            if (file) {
-                fileToBase64(file).then(base64Data => {
-                    messages.push({
-                        text: text,
-                        file: {
-                            name: file.name,
-                            type: file.type,
-                            data: base64Data
-                        }
-                    });
-                    saveAndRender();
-                    resetForm();
-                }).catch(err => {
-                    console.error("Ошибка чтения файла:", err);
-                    alert("Не удалось прикрепить файл. Попробуйте файл меньшего размера.");
-                });
-            } else {
-                messages.push({ text: text, file: null });
-                saveAndRender();
-                resetForm();
-            }
-
-            return false;
-        });
-
-        function resetForm() {
-            userInput.value = '';
-            fileInput.value = '';
-        }
-
-        function fileToBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = error => reject(error);
-                reader.readAsDataURL(file);
-            });
-        }
-
-        window.deleteMessage = function(index) {
-            messages.splice(index, 1);
-            saveAndRender();
-        };
-
-        window.editMessage = function(index) {
-            const newText = prompt("Редактировать сообщение:", messages[index].text);
-            if (newText !== null && newText.trim() !== '') {
-                messages[index].text = newText.trim();
-                saveAndRender();
-            }
-        };
-
-        function saveAndRender() {
-            try {
-                localStorage.setItem('chat_messages', JSON.stringify(messages));
-            } catch (e) {
-                alert("Превышен лимит памяти браузера (localStorage)! Попробуйте удалить старые медиасообщения.");
-            }
-            renderMessages();
-        }
-
-        renderMessages();
-    </script>
 </body>
 </html>
