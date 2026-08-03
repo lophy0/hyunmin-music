@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+ <!DOCTYPE html> 
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -279,6 +279,38 @@
             border-radius: 4px;
         }
 
+        /* --- Секция "О нас" --- */
+        .about-us-card {
+            background: rgba(14, 18, 15, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 35px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .about-us-card:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-glow);
+        }
+
+        .about-us-card p {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .about-us-card p strong {
+            color: var(--accent-color);
+        }
+
+        .about-us-card p:last-child {
+            margin-bottom: 0;
+        }
+
         .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -367,8 +399,7 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
-
-        .social-card {
+ .social-card {
             background: rgba(14, 18, 15, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
@@ -401,7 +432,8 @@
             color: var(--text-muted);
             font-size: 0.95rem;
         }
- .btn-secondary {
+
+        .btn-secondary {
             display: inline-block;
             text-align: center;
             background-color: transparent;
@@ -445,6 +477,7 @@
     <header>
         <div class="logo">HYUN<span>MIN</span></div>
         <nav>
+            <a href="#about-us">О нас</a>
             <a href="#about">Жанры</a>
             <a href="#collab">Коллабы</a>
             <a href="#community">Сообщество</a>
@@ -467,13 +500,22 @@
                     Основной стиль
                 </div>
                 <div class="stat-item">
-                    <strong>Открыто</strong>
-                    Для совместных проектов
+                    <strong>Открыт</strong>
+                    К совместным трекам
                 </div>
                 <div class="stat-item">
                     <strong>Community</strong>
                     Telegram & Discord
                 </div>
+            </div>
+        </section>
+
+        <section id="about-us">
+            <h2 class="section-title">О нас</h2>
+            <div class="about-us-card">
+                <p>Привет! Мы — творческое пространство и комьюнити, созданное для объединения людей с горящими глазами и свежими идеями.</p>
+                <p>Мы постоянно <strong>ищем талантливых и амбициозных людей</strong> для совместных проектов: от записи фитов, создания битов и написания текстов до совместных релизов, визуального оформления и клёвого сотворчества.</p>
+ <p>Неважно, какой у тебя опыт или стиль — если у тебя есть вайб и желание делать качественный звук, нам точно по пути!</p>
             </div>
         </section>
 
@@ -508,7 +550,7 @@
             <div class="social-grid">
                 
                 <div class="social-card">
- <div>
+                    <div>
                         <h3><span>📢</span> Telegram Канал</h3>
                         <p>Свежие новости, анонсы треков, бекстейджи и оперативные обновления проекта.</p>
                     </div>
