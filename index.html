@@ -1,4 +1,4 @@
- <!DOCTYPE html> 
+[15.08.2026 15:37] 𝔏𝔬𝔭𝔥𝔶: <!DOCTYPE html> 
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -84,7 +84,7 @@
             filter: blur(60px);
         }
 
-        /* --- Шапка с анимированной неоновой полосой --- */
+        /* --- Шапка --- */
         header {
             display: flex;
             justify-content: space-between;
@@ -125,15 +125,16 @@
             color: var(--accent-color);
             text-shadow: 0 0 12px var(--accent-glow);
         }
- nav {
+[15.08.2026 15:37] 𝔏𝔬𝔭𝔥𝔶: nav {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         nav a {
             color: var(--text-muted);
             text-decoration: none;
-            margin-left: 20px;
             font-size: 0.95rem;
             transition: 0.3s;
             position: relative;
@@ -142,34 +143,6 @@
         nav a:hover {
             color: var(--accent-color);
             text-shadow: 0 0 8px var(--accent-glow);
-        }
-
-        .status-badge {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.75rem;
-            background: rgba(138, 206, 0, 0.1);
-            border: 1px solid var(--accent-color);
-            padding: 2px 8px;
-            border-radius: 12px;
-            margin-left: 15px;
-            color: var(--accent-color);
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent-color);
-            animation: pulse 1.8s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.4; transform: scale(0.9); }
-            50% { opacity: 1; transform: scale(1.3); }
-            100% { opacity: 0.4; transform: scale(0.9); }
         }
 
         .hero {
@@ -269,7 +242,8 @@
             align-items: center;
             gap: 12px;
         }
- .section-title::before {
+
+        .section-title::before {
             content: '';
             display: inline-block;
             width: 8px;
@@ -295,8 +269,7 @@
             border-color: var(--accent-color);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-glow);
         }
-
-        .about-us-card p {
+[15.08.2026 15:37] 𝔏𝔬𝔭𝔥𝔶: .about-us-card p {
             color: var(--text-color);
             font-size: 1.1rem;
             line-height: 1.7;
@@ -338,6 +311,89 @@
             margin-bottom: 10px;
         }
 
+        /* --- Генератор Вайба --- */
+        .vibe-card {
+            background: rgba(14, 18, 15, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .vibe-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .vibe-item {
+            background: rgba(5, 6, 5, 0.6);
+            border: 1px solid var(--border-color);
+            padding: 15px 10px;
+            border-radius: 10px;
+        }
+
+        .vibe-item span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .vibe-item strong {
+            color: var(--accent-color);
+            font-size: 1.05rem;
+        }
+
+        /* --- Карта Релизов (Roadmap) --- */
+        .roadmap {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+        }
+
+        .roadmap-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            background: rgba(14, 18, 15, 0.7);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .roadmap-item:hover {
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 15px var(--purple-glow);
+        }
+
+        .roadmap-date {
+            background: rgba(168, 85, 247, 0.15);
+            color: var(--accent-purple);
+            border: 1px solid var(--accent-purple);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .roadmap-content h3 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .roadmap-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
         .form-banner {
             background: linear-gradient(135deg, rgba(14, 18, 15, 0.9) 0%, rgba(20, 32, 20, 0.8) 100%);
             border: 1px solid var(--border-color);
@@ -353,8 +409,7 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-
-        .form-banner::after {
+[15.08.2026 15:37] 𝔏𝔬𝔭𝔥𝔶: .form-banner::after {
             content: '';
             position: absolute;
             top: -50%;
@@ -387,6 +442,8 @@
             transition: all 0.2s ease;
             box-shadow: 0 0 15px var(--accent-glow);
             z-index: 1;
+            cursor: pointer;
+            border: none;
         }
 
         .btn-link:hover {
@@ -399,7 +456,8 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
- .social-card {
+
+        .social-card {
             background: rgba(14, 18, 15, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
@@ -453,7 +511,45 @@
             box-shadow: 0 0 15px var(--accent-glow);
         }
 
-        footer {
+        /* --- Секция Донатов --- */
+        .donate-card {
+            background: linear-gradient(135deg, rgba(14, 18, 15, 0.85) 0%, rgba(25, 20, 35, 0.85) 100%);
+            border: 1px solid var(--accent-purple);
+            border-radius: 14px;
+            padding: 35px;
+            text-align: center;
+            box-shadow: 0 0 20px var(--purple-glow);
+        }
+
+        .donate-card p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        .donate-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-donate {
+            background: linear-gradient(135deg, var(--accent-purple), #c084fc);
+            color: #fff;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            transition: 0.3s;
+            box-shadow: 0 0 15px var(--purple-glow);
+        }
+
+        .btn-donate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+        }
+[15.08.2026 15:37] 𝔏𝔬𝔭𝔥𝔶: footer {
             text-align: center;
             padding: 30px;
             border-top: 1px solid var(--border-color);
@@ -479,12 +575,11 @@
         <nav>
             <a href="#about-us">О нас</a>
             <a href="#about">Жанры</a>
+            <a href="#vibe">Генератор вайба</a>
+            <a href="#roadmap">Релизы</a>
             <a href="#collab">Коллабы</a>
             <a href="#community">Сообщество</a>
-            <div class="status-badge">
-                <div class="status-dot"></div>
-                <span>LIVE</span>
-            </div>
+            <a href="#donate">Поддержать</a>
         </nav>
     </header>
 
@@ -515,7 +610,7 @@
             <div class="about-us-card">
                 <p>Привет! Мы — творческое пространство и комьюнити, созданное для объединения людей с горящими глазами и свежими идеями.</p>
                 <p>Мы постоянно <strong>ищем талантливых и амбициозных людей</strong> для совместных проектов: от записи фитов, создания крутых песен и написания текстов до совместных релизов, визуального оформления и клёвого сотворчества.</p>
- <p>Неважно, какой у тебя опыт, любимый жанр или стиль — если у тебя есть желание делать качественно и круто, нам точно по пути!</p>
+                <p>Неважно, какой у тебя опыт, любимый жанр или стиль — если у тебя есть желание делать качественно и круто, нам точно по пути!</p>
             </div>
         </section>
 
@@ -529,6 +624,67 @@
                 <div class="card">
                     <h3>Без жанровых рамок</h3>
                     <p>Поп, хип-хоп, инди, электроника или альтернатива — если есть идея, пиши не стесняйся.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Генератор Вайба -->
+        <section id="vibe">
+            <h2 class="section-title">Генератор вайба для трека</h2>
+            <div class="vibe-card">
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Не знаешь, с чего начать новый трек? Нажми кнопку и получи случайное вдохновение!</p>
+                
+                <div class="vibe-results">
+                    <div class="vibe-item">
+                        <span>Темп (BPM)</span>
+                        <strong id="vibe-bpm">92 BPM</strong>
+                    </div>
+                    <div class="vibe-item">
+                        <span>Тональность</span>
+[15.08.2026 15:37] 𝔏𝔬𝔭𝔥𝔶: <strong id="vibe-key">F Minor</strong>
+                    </div>
+                    <div class="vibe-item">
+                        <span>Настроение</span>
+                        <strong id="vibe-mood">Ночной город</strong>
+                    </div>
+                    <div class="vibe-item">
+                        <span>Стиль</span>
+                        <strong id="vibe-style">Neo-R&B</strong>
+                    </div>
+                    <div class="vibe-item">
+                        <span>Акцент</span>
+                        <strong id="vibe-instrument">Rhodes Piano</strong>
+                    </div>
+                </div>
+
+                <button class="btn-link" onclick="generateVibe()">🎲 Сгенерировать вайб</button>
+            </div>
+        </section>
+
+        <!-- Карта Релизов -->
+        <section id="roadmap">
+            <h2 class="section-title">Карта релизов</h2>
+            <div class="roadmap">
+                <div class="roadmap-item">
+                    <div class="roadmap-date">Август 2026</div>
+                    <div class="roadmap-content">
+                        <h3>Запуск сайта & Набор артистов</h3>
+                        <p>Открытие платформы, сбор анкет, знакомство с новыми участниками комьюнити.</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-date">Сентябрь 2026</div>
+                    <div class="roadmap-content">
+                        <h3>Первая сессия фитов</h3>
+                        <p>Отбор демо-записей, запуск работы над первыми совместными R&B и мультижанровыми треками.</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-date">Октябрь 2026</div>
+                    <div class="roadmap-content">
+                        <h3>Hyunmin Community Mixtape Vol. 1</h3>
+                        <p>Релиз первого коллективного микстейпа участников комьюнити на всех стриминговых площадках.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -567,11 +723,40 @@
 
             </div>
         </section>
+
+        <!-- Поддержать проект -->
+        <section id="donate">
+            <h2 class="section-title">Поддержать проект</h2>
+[15.08.2026 15:37] 𝔏𝔬𝔭𝔥𝔶: <div class="donate-card">
+                <p>Ваши донаты помогают комьюнити расти: средства идут на продвижение релизов артистов, покупку качественных софтов/сэмплов и поддержание платформы.</p>
+                <div class="donate-buttons">
+                    <!-- Замени ссылки ниже на свои реальные реквизиты или Boosty/DonationAlerts -->
+                    <a href="https://boosty.to/" target="_blank" class="btn-donate">💎 Boosty / Донаты</a>
+                    <a href="https://t.me/+HzGr4kXFwhVjZDEy" target="_blank" class="btn-secondary">💳 Реквизиты в Telegram</a>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
         <p>&copy; 2026 Hyunmin. Green & Black Vibe. Сайт знакомства для артистов.</p>
     </footer>
 
+    <!-- Скрипт для работы Генератора Вайба -->
+    <script>
+        function generateVibe() {
+            const bpms = ['75 BPM', '88 BPM', '95 BPM', '105 BPM', '120 BPM', '130 BPM', '140 BPM'];
+            const keys = ['C Minor', 'F Minor', 'A Major', 'G# Minor', 'D Minor', 'E Minor', 'F# Minor'];
+            const moods = ['Ночной город', 'Меланхолия', 'Драйв & Энергия', 'Ностальгия', 'Романтика', 'Мрачный кач', 'Летний расслаб'];
+            const styles = ['Neo-R&B', 'Trap R&B', 'Indie Pop', 'Alternative', 'Lo-Fi Vibe', 'Soul', 'Synthwave'];
+            const instruments = ['Rhodes Piano', '808 Bass & Guitar', 'Pluck Synth', 'Acoustic Guitar', 'Ambient Pad', 'Vocal Chops'];
+
+            document.getElementById('vibe-bpm').innerText = bpms[Math.floor(Math.random() * bpms.length)];
+            document.getElementById('vibe-key').innerText = keys[Math.floor(Math.random() * keys.length)];
+            document.getElementById('vibe-mood').innerText = moods[Math.floor(Math.random() * moods.length)];
+            document.getElementById('vibe-style').innerText = styles[Math.floor(Math.random() * styles.length)];
+            document.getElementById('vibe-instrument').innerText = instruments[Math.floor(Math.random() * instruments.length)];
+        }
+    </script>
 </body>
 </html>
