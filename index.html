@@ -59,7 +59,7 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* --- Визуальный декор: Сетка и Анимированный Неон --- */
+        /* --- Сетка и Анимированный Неон --- */
         body::before {
             content: '';
             position: fixed;
@@ -311,7 +311,7 @@
             border-radius: 4px;
         }
 
-        .about-us-card, .card, .vibe-card, .quiz-card, .donate-card {
+        .about-us-card, .card, .vibe-card, .donate-card {
             background: var(--card-bg);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
@@ -322,7 +322,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .about-us-card:hover, .card:hover, .vibe-card:hover, .quiz-card:hover {
+        .about-us-card:hover, .card:hover, .vibe-card:hover {
             border-color: var(--accent-color);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 20px var(--accent-glow);
             transform: translateY(-3px);
@@ -368,7 +368,7 @@
             padding: 15px 10px;
             border-radius: 12px;
             text-align: center;
-            transition: 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .vibe-item:hover {
@@ -401,103 +401,11 @@
             box-shadow: 0 0 15px var(--accent-glow);
             cursor: pointer;
             border: none;
+            outline: none;
         }
  .btn-link:hover {
             transform: translateY(-2px) scale(1.03);
             box-shadow: 0 0 25px var(--accent-glow);
-        }
-
-        /* --- Тест --- */
-        .quiz-options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .quiz-opt-btn {
-            background: var(--item-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 16px 20px;
-            border-radius: 10px;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        .quiz-opt-btn:hover {
-            border-color: var(--accent-color);
-            background: var(--accent-color);
-            color: #000;
-            transform: translateX(6px);
-            box-shadow: 0 0 12px var(--accent-glow);
-        }
-
-        .quiz-result {
-            display: none;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .quiz-result h3 {
-            color: var(--accent-color);
-            font-size: 1.6rem;
-            margin-bottom: 12px;
-        }
-
-        /* --- FAQ Аккордеон --- */
-        .faq-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            margin-bottom: 14px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            backdrop-filter: blur(12px);
-        }
-
-        .faq-item:hover {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        .faq-question {
-            padding: 18px 20px;
-            font-weight: 700;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-color);
-            user-select: none;
-        }
-
-        .faq-arrow {
-            color: var(--accent-color);
-            transition: transform 0.3s ease;
-            font-size: 0.85rem;
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease, padding 0.35s ease;
-            color: var(--text-muted);
-            padding: 0 20px;
-            line-height: 1.6;
-        }
-
-        .faq-item.active .faq-answer {
-            padding: 10px 20px 20px;
-            max-height: 200px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .faq-item.active .faq-arrow {
-            transform: rotate(180deg);
         }
 
         .form-banner {
@@ -548,7 +456,8 @@
     </style>
 </head>
 <body>
- <!-- Фоновые эффекты -->
+
+    <!-- Фоновые эффекты -->
     <div class="glow-orb-1"></div>
     <div class="glow-orb-2"></div>
     <canvas id="audio-visualizer"></canvas>
@@ -563,9 +472,7 @@
             <a href="#about-us">О нас</a>
             <a href="#about">Жанры</a>
             <a href="#vibe">Генератор вайба</a>
-            <a href="#quiz">Тест</a>
             <a href="#collab">Коллабы</a>
-            <a href="#faq">FAQ</a>
             <a href="#community">Сообщество</a>
             <a href="#donate">Поддержать</a>
         </nav>
@@ -602,8 +509,7 @@
                 <p>Неважно, какой у тебя опыт, любимый жанр или стиль — если у тебя есть желание делать качественно и круто, нам точно по пути!</p>
             </div>
         </section>
-
-        <section id="about">
+ <section id="about">
             <h2 class="section-title">Жанры</h2>
             <div class="about-grid">
                 <div class="card">
@@ -617,7 +523,7 @@
             </div>
         </section>
 
-        <!-- Генератор Вайба -->
+        <!-- Исправленный Генератор Вайба -->
         <section id="vibe">
             <h2 class="section-title">Генератор вайба для трека</h2>
             <div class="vibe-card" style="text-align: center;">
@@ -634,7 +540,7 @@
                     </div>
                     <div class="vibe-item">
                         <span>Настроение</span>
- <strong id="vibe-mood">Ночной город</strong>
+                        <strong id="vibe-mood">Ночной город</strong>
                     </div>
                     <div class="vibe-item">
                         <span>Жанр</span>
@@ -646,23 +552,7 @@
                     </div>
                 </div>
 
-                <button class="btn-link" id="gen-vibe-btn">🎲 Сгенерировать вайб</button>
-            </div>
-        </section>
-
-        <!-- Интерактивный Тест -->
-        <section id="quiz">
-            <h2 class="section-title">Кто ты в музыкальной индустрии?</h2>
-            <div class="quiz-card">
-                <div id="quiz-body">
-                    <h3 id="quiz-question" style="margin-bottom: 15px; color: var(--text-color);">Вопрос 1</h3>
-                    <div class="quiz-options" id="quiz-options"></div>
-                </div>
-                <div class="quiz-result" id="quiz-result">
-                    <h3 id="quiz-role-title">Твоя роль</h3>
-                    <p id="quiz-role-desc" style="color: var(--text-muted); margin-bottom: 20px;"></p>
-                    <button class="btn-link" id="reset-quiz-btn">🔄 Пройти ещё раз</button>
-                </div>
+                <button class="btn-link" id="gen-vibe-btn" onclick="generateVibe()">🎲 Сгенерировать вайб</button>
             </div>
         </section>
 
@@ -677,48 +567,13 @@
             </div>
         </section>
 
-        <!-- FAQ Секция -->
-        <section id="faq">
-            <h2 class="section-title">Частые вопросы (FAQ)</h2>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Как записать с вами совместный фит?</span>
-                    <span class="faq-arrow">▼</span>
-                </div>
-                <div class="faq-answer">
-                    Просто заполни форму в разделе "Коллаборации" или напиши в наш Discord/Telegram. Мы прослушаем твои демо-записи и обязательно свяжемся!
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Платное ли участие в комьюнити?</span>
-                    <span class="faq-arrow">▼</span>
-                </div>
-                <div class="faq-answer">
-                    Нет! Наше пространство открыто абсолютно бесплатно для всех талантливых музыкантов, вокалистов, битмейкеров и авторов текстов.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Работаете ли вы в других жанрах, кроме R&B?</span>
-                    <span class="faq-arrow">▼</span>
-                </div>
-                <div class="faq-answer">
-                    Да! R&B — наше базовое направление, но мы обожаем эксперименты с Pop, Hip-Hop, Indie, Synthwave и любыми другими стилями.
-                </div>
-            </div>
-        </section>
-
         <section id="community">
             <h2 class="section-title">Сообщество</h2>
             <div class="social-grid">
                 <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 15px;">
                     <div>
                         <h3>📢 Telegram Канал</h3>
- <p>Свежие новости, анонсы треков, бекстейджи и оперативные обновления проекта.</p>
+                        <p>Свежие новости, анонсы треков, бекстейджи и оперативные обновления проекта.</p>
                     </div>
                     <a href="https://t.me/+HzGr4kXFwhVjZDEy" target="_blank" class="btn-secondary">Подписаться</a>
                 </div>
@@ -733,7 +588,7 @@
         </section>
 
         <section id="donate">
-            <h2 class="section-title">Поддержать проект</h2>
+ <h2 class="section-title">Поддержать проект</h2>
             <div class="donate-card" style="text-align: center;">
                 <p style="color: var(--text-muted); margin-bottom: 25px;">Ваши донаты помогают комьюнити расти: средства идут на продвижение релизов артистов, покупку качественных софтов/сэмплов и поддержание платформы.</p>
                 <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
@@ -748,167 +603,87 @@
         <p>&copy; 2026 Hyunmin. Green & Black Vibe. Сайт знакомства для артистов.</p>
     </footer>
 
-    <!-- Гарантированные JS скрипты -->
+    <!-- Гарантированный скрипт генератора вайба -->
     <script>
+        // Функция генерации вынесена в глобальную область
+        function generateVibe() {
+            const bpms = ['65 BPM', '72 BPM', '80 BPM', '88 BPM', '94 BPM', '100 BPM', '110 BPM', '125 BPM', '132 BPM', '140 BPM', '155 BPM', '168 BPM', '175 BPM'];
+            const keys = ['C Minor', 'C# Major', 'D Minor', 'D# Major', 'E Minor', 'F Minor', 'F# Major', 'G Minor', 'G# Minor', 'A Major', 'A# Minor', 'B Minor'];
+            const moods = ['Ночной город', 'Меланхолия', 'Драйв & Энергия', 'Ностальгия', 'Глубокая Романтика', 'Мрачный кач', 'Летний расслаб', 'Космический трип', 'Киберпанк тоска', 'Утренний вайб', 'Клубный азарт'];
+            const genres = ['Neo-R&B', 'Trap R&B', 'Alternative Pop', 'Indie Rock', 'Lo-Fi Hip-Hop', 'Soul & Funk', 'Synthwave', 'Afrobeat', 'UK Drill', 'Hyperpop', 'Phonk', 'Ambient Chill', 'Dancehall'];
+            const instruments = ['Rhodes Piano', '808 Bass & Guitar', 'Pluck Synth', 'Acoustic Guitar', 'Ambient Pad', 'Vocal Chops', 'Analog Synth Lead', '80s Saxophone', 'Distorted Sub Bass', 'Organ FX'];
+
+            const elBpm = document.getElementById('vibe-bpm');
+            const elKey = document.getElementById('vibe-key');
+            const elMood = document.getElementById('vibe-mood');
+            const elGenre = document.getElementById('vibe-genre');
+            const elInst = document.getElementById('vibe-instrument');
+
+            if(elBpm && elKey && elMood && elGenre && elInst) {
+                elBpm.innerText = bpms[Math.floor(Math.random() * bpms.length)];
+                elKey.innerText = keys[Math.floor(Math.random() * keys.length)];
+                elMood.innerText = moods[Math.floor(Math.random() * moods.length)];
+                elGenre.innerText = genres[Math.floor(Math.random() * genres.length)];
+                elInst.innerText = instruments[Math.floor(Math.random() * instruments.length)];
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
-
-            // 1. Смена Темы
+            // 1. Смена темы
             const themeBtn = document.getElementById('theme-btn');
-            themeBtn.addEventListener('click', function() {
-                document.body.classList.toggle('light-theme');
-                if (document.body.classList.contains('light-theme')) {
-                    themeBtn.innerText = '☀️';
-                } else {
-                    themeBtn.innerText = '🌙';
-                }
-            });
+            if(themeBtn) {
+                themeBtn.addEventListener('click', function() {
+                    document.body.classList.toggle('light-theme');
+                    themeBtn.innerText = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
+                });
+            }
 
-            // 2. Генератор Вайба
+            // 2. Резервная привязка кнопки вайба
             const genBtn = document.getElementById('gen-vibe-btn');
-            function generateVibe() {
-                const bpms = ['65 BPM', '72 BPM', '80 BPM', '88 BPM', '94 BPM', '100 BPM', '110 BPM', '125 BPM', '132 BPM', '140 BPM', '155 BPM', '168 BPM', '175 BPM'];
-                const keys = ['C Minor', 'C# Major', 'D Minor', 'D# Major', 'E Minor', 'F Minor', 'F# Major', 'G Minor', 'G# Minor', 'A Major', 'A# Minor', 'B Minor'];
-                const moods = ['Ночной город', 'Меланхолия', 'Драйв & Энергия', 'Ностальгия', 'Глубокая Романтика', 'Мрачный кач', 'Летний расслаб', 'Космический трип', 'Киберпанк тоска', 'Утренний вайб', 'Клубный азарт'];
-                const genres = ['Neo-R&B', 'Trap R&B', 'Alternative Pop', 'Indie Rock', 'Lo-Fi Hip-Hop', 'Soul & Funk', 'Synthwave', 'Afrobeat', 'UK Drill', 'Hyperpop', 'Phonk', 'Ambient Chill', 'Dancehall'];
-                const instruments = ['Rhodes Piano', '808 Bass & Guitar', 'Pluck Synth', 'Acoustic Guitar', 'Ambient Pad', 'Vocal Chops', 'Analog Synth Lead', '80s Saxophone', 'Distorted Sub Bass', 'Organ FX'];
-
-                document.getElementById('vibe-bpm').innerText = bpms[Math.floor(Math.random() * bpms.length)];
-                document.getElementById('vibe-key').innerText = keys[Math.floor(Math.random() * keys.length)];
-                document.getElementById('vibe-mood').innerText = moods[Math.floor(Math.random() * moods.length)];
-                document.getElementById('vibe-genre').innerText = genres[Math.floor(Math.random() * genres.length)];
-                document.getElementById('vibe-instrument').innerText = instruments[Math.floor(Math.random() * instruments.length)];
-            }
-            genBtn.addEventListener('click', generateVibe);
- // 3. Тест «Кто ты в музыкальной индустрии»
-            const quizData = [
-                {
-                    q: "Что ты делаешь первым делом, когда приходит вдохновение?",
-                    a: [
-                        { text: "Открываю DAW и настукиваю жирную драм-партию", role: "beatmaker" },
-                        { text: "Напеваю красивую мелодию на диктофон", role: "singer" },
-                        { text: "Довожу звук снейра до идеального идеала", role: "sound" },
-                        { text: "Записываю метафоры и рифмы в заметки", role: "lyricist" }
-                    ]
-                },
-                {
-                    q: "Какой элемент в треке для тебя на первом месте?",
-                    a: [
-                        { text: "Качающий 808 бас и перегруженные снейры", role: "beatmaker" },
-                        { text: "Душевный вокал с морем эмоций", role: "singer" },
-                        { text: "Чистый, сбалансированный сведение-микс", role: "sound" },
-                        { text: "Глубокий смысловой текст и цепляющий хук", role: "lyricist" }
-                    ]
-                },
-                {
-                    q: "Где тебе комфортнее всего работать над музыкой?",
-                    a: [
-                        { text: "За MIDI-клавиатурой в своей студии", role: "beatmaker" },
-                        { text: "У студийного микрофона", role: "singer" },
-                        { text: "В мониторных наушниках за эквалайзерами", role: "sound" },
-                        { text: "С блокнотом в тишине", role: "lyricist" }
-                    ]
-                }
-            ];
-
-            let currentQ = 0;
-            let scores = { beatmaker: 0, singer: 0, sound: 0, lyricist: 0 };
-
-            function loadQuiz() {
-                if (currentQ >= quizData.length) {
-                    showQuizResult();
-                    return;
-                }
-                const q = quizData[currentQ];
-                document.getElementById('quiz-question').innerText = Вопрос ${currentQ + 1} из ${quizData.length}: ${q.q};
-                const optDiv = document.getElementById('quiz-options');
-                optDiv.innerHTML = '';
-
-                q.a.forEach(opt => {
-                    const btn = document.createElement('button');
-                    btn.className = 'quiz-opt-btn';
-                    btn.innerText = opt.text;
-                    btn.addEventListener('click', function() {
-                        scores[opt.role]++;
-                        currentQ++;
-                        loadQuiz();
-                    });
-                    optDiv.appendChild(btn);
-                });
+            if(genBtn) {
+                genBtn.addEventListener('click', generateVibe);
             }
 
-            function showQuizResult() {
-                document.getElementById('quiz-body').style.display = 'none';
-                document.getElementById('quiz-result').style.display = 'block';
-                
-                let topRole = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-                
-                const rolesInfo = {
-                    beatmaker: { title: "🎹 Ты — Архитектор Вайба (Битмейкер)", desc: "Твоя стихия — это качающий ритм, грув и гармония. Без твоих битов этот мир был бы слишком тихим!" },
-                    singer: { title: "🎤 Ты — Голос Души (Исполнитель)", desc: "Твой вокал и подача заставляют людей чувствовать эмоции. Ты создаёшь главную магию в треках!" },
-                    sound: { title: "🎛️ Ты — Гений Звука (Звукорежиссёр)", desc: "Ты видишь частоты там, где другие слышат шум. Твой слух превращает демки в фирменный продукт!" },
-                    lyricist: { title: "✍️ Ты — Поэт Новой Эры (Гострайтер)", desc: "Твои слова попадают точно в цель. Ты умеешь упаковывать сложные чувства в простые и цепляющие строки!" }
-                };
-
-                document.getElementById('quiz-role-title').innerText = rolesInfo[topRole].title;
-                document.getElementById('quiz-role-desc').innerText = rolesInfo[topRole].desc;
-            }
- document.getElementById('reset-quiz-btn').addEventListener('click', function() {
-                currentQ = 0;
-                scores = { beatmaker: 0, singer: 0, sound: 0, lyricist: 0 };
-                document.getElementById('quiz-body').style.display = 'block';
-                document.getElementById('quiz-result').style.display = 'none';
-                loadQuiz();
-            });
-
-            loadQuiz();
-
-            // 4. FAQ Раскрывающиеся Плашки
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    this.classList.toggle('active');
-                });
-            });
-
-            // 5. Фоновый Анимированный Визуализатор
+            // 3. Фоновый визуализатор
             const canvas = document.getElementById('audio-visualizer');
-            const ctx = canvas.getContext('2d');
-            let bars = [];
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let bars = [];
 
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                initBars();
-            }
-
-            function initBars() {
-                bars = [];
-                const numBars = Math.floor(canvas.width / 22);
-                for(let i = 0; i < numBars; i++) {
-                    bars.push({
-                        x: i * 22,
-                        h: Math.random() * 80 + 20,
-                        speed: Math.random() * 0.04 + 0.02
-                    });
+                function resizeCanvas() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                    initBars();
                 }
+ function initBars() {
+                    bars = [];
+                    const numBars = Math.floor(canvas.width / 22);
+                    for(let i = 0; i < numBars; i++) {
+                        bars.push({
+                            x: i * 22,
+                            h: Math.random() * 80 + 20,
+                            speed: Math.random() * 0.04 + 0.02
+                        });
+                    }
+                }
+
+                function drawVisualizer() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    const isLight = document.body.classList.contains('light-theme');
+                    ctx.fillStyle = isLight ? 'rgba(104, 160, 0, 0.25)' : 'rgba(138, 206, 0, 0.25)';
+
+                    bars.forEach((bar, index) => {
+                        bar.h += Math.sin(Date.now() * bar.speed + index) * 1.2;
+                        if(bar.h < 10) bar.h = 10;
+                        ctx.fillRect(bar.x, canvas.height - bar.h, 12, bar.h);
+                    });
+                    requestAnimationFrame(drawVisualizer);
+                }
+
+                window.addEventListener('resize', resizeCanvas);
+                resizeCanvas();
+                drawVisualizer();
             }
-
-            function drawVisualizer() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                const isLight = document.body.classList.contains('light-theme');
-                ctx.fillStyle = isLight ? 'rgba(104, 160, 0, 0.25)' : 'rgba(138, 206, 0, 0.25)';
-
-                bars.forEach((bar, index) => {
-                    bar.h += Math.sin(Date.now() * bar.speed + index) * 1.2;
-                    if(bar.h < 10) bar.h = 10;
-                    ctx.fillRect(bar.x, canvas.height - bar.h, 12, bar.h);
-                });
-                requestAnimationFrame(drawVisualizer);
-            }
-
-            window.addEventListener('resize', resizeCanvas);
-            resizeCanvas();
-            drawVisualizer();
         });
     </script>
 </body>
